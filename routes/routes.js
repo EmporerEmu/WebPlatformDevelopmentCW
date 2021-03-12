@@ -1,13 +1,18 @@
 // Imports
 const express = require("express");
-const controller = require("../controllers/homeController");
+const homeController = require("../controllers/homeController");
+const tasksController = require("../controllers/tasksController");
 
 const router = express.Router();
 
 // Routes
-router.get("/", controller.landingPage);
+// Home and root
+router.get("/", homeController.landingPage);
 
-router.get("/add", controller.addActivity)
+// Tasks
+router.get("/add", homeController.addActivity)
+
+// Account
 
 // Routes | status codes
 router.use(function (req, res) {

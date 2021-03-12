@@ -1,0 +1,8 @@
+{
+  "verbose": true,
+  "execMap": {
+    "js": "node --harmony index.js"
+  },
+  "script": "index.js",
+  "ext": "js mustache"
+}
