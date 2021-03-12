@@ -7,7 +7,7 @@ const { response } = require("express");
 // }
 
 exports.landingPage = function(req, res) {
-  res.render("landingPage",
+  res.render("layout",
   {
     title: "Fitness - Landing Page"
   })

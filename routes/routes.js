@@ -1,6 +1,6 @@
 // Imports
 const express = require("express");
-const controller = require("../controllers/controller");
+const controller = require("../controllers/homeController");
 
 const router = express.Router();
 
