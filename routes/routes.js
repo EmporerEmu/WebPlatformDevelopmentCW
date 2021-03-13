@@ -2,6 +2,7 @@
 const express = require("express");
 const homeController = require("../controllers/homeController");
 const tasksController = require("../controllers/tasksController");
+const accountController = require("../controllers/accountController");
 
 const router = express.Router();
 
@@ -10,11 +11,17 @@ const router = express.Router();
 router.get("/", homeController.landingPage);
 
 // Tasks
-router.get("/add", homeController.addActivity)
+router.get("/add", tasksController.addActivity);
+
+router.get("/viewPlanner", tasksController.viewPlanner);
 
 // Account
+router.get("/login", accountController.login);
+
+router.get("/signUp", accountController.signUp);
 
 // Routes | status codes
+
 router.use(function (req, res) {
   res.status(400);
   res.type("text/plain");

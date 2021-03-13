@@ -7,18 +7,14 @@ const db = new seed();
 db.init();
 
 // root
-exports.landingPage = function(req, res) {
-  res.send("<h1>Not yet Implemented. Landing page</h1>");
-}
-
 // exports.landingPage = function(req, res) {
-//   res.render("layout",
-//   {
-//     title: "Fitness - Landing Page"
-//   })
+//   res.send("<h1>Not yet Implemented. Landing page</h1>");
 // }
 
-// /new
-exports.addActivity = function(req, res) {
-  res.send("<h1>Not yet implemented. New goals");
+exports.landingPage = function(req, res) {
+  res.render("landingPage",
+  {
+    title: "Fitness - Landing Page"
+  })
 }
+
