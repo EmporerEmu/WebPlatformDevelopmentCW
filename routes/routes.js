@@ -13,6 +13,8 @@ router.get("/", homeController.landingPage);
 // Tasks
 router.get("/add", tasksController.addActivity);
 
+router.post("/add", tasksController.postAddActivity);
+
 router.get("/viewPlanner", tasksController.viewPlanner);
 
 // Account

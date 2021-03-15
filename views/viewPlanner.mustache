@@ -7,6 +7,34 @@
     {{>nav}}
     <div class="container">
       <h1>Here be the planner/schedule</h1>
+
+      <!-- Tasks table -->
+      <table class="table table-striped table-light table-hover table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">End Time</th>
+            <th scope="col">Date Added</th>
+            <th scope="col">Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#tasks}}
+          <tr>
+            <td>{{ name }}</td>
+            <td>{{ type }}</td>
+            <td>{{ startTime }}</td>
+            <td>{{ endTime }}</td>
+            <td>{{ added }}</td>
+            <td>
+              <button type="submit" class="btn btn-primary">Edit</button>
+            </td>
+          </tr>
+          {{/tasks}}
+        </tbody>
+      </table>
     </div>
 
     <script

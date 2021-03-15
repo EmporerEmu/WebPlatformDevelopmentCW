@@ -7,6 +7,66 @@
     {{>nav}}
     <div class="container">
       <h1>Here be tasks</h1>
+      <form method="POST">
+        <div class="mb-3">
+          <label for="activityName" class="form-label">Activity Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="activityName"
+            name="name"
+            
+          />
+          <div id="activityHelp" class="form-text">
+            Short descriptive names work best
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="activityType" class="form-label">Activity Type</label>
+          <input
+            class="form-control"
+            list="dataListOptions"
+            id="activityType"
+            placeholder="Type to search..."
+            name="type"
+            required
+          />
+          <datalist id="dataListOptions">
+            <option value="Running"></option>
+            <option value="Swimming"></option>
+            <option value="Lifting"></option>
+            <option value="Something else"></option>
+          </datalist>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label for="startTime" class="form-label">Start Time</label>
+            <input
+              class="form-control"
+              type="time"
+              id="startTime"
+              name="startTime"
+              required
+            />
+          </div>
+          <div class="col">
+            <label for="endTime" class="form-label">End Time</label>
+            <input
+              class="form-control"
+              type="time"
+              id="endTime"
+              name="endTime"
+              required
+            />
+          </div>
+        </div>
+        <div class="mb-3"></div>
+        <div class="mb-3"></div>
+        <div class="mb-3"></div>
+        <div class="mb-3"></div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
 
     <script
