@@ -11,16 +11,16 @@ const router = express.Router();
 router.get("/", homeController.landingPage);
 
 // Tasks
-router.get("/add", tasksController.addActivity);
+router.get("/activities-add", tasksController.addActivity);
 
-router.post("/add", tasksController.postAddActivity);
+router.post("/activities-add", tasksController.postAddActivity);
 
-router.get("/viewPlanner", tasksController.viewPlanner);
+router.get("/activities-planner", tasksController.viewPlanner);
 
 // Account
-router.get("/login", accountController.login);
+router.get("/account-login", accountController.login);
 
-router.get("/signUp", accountController.signUp);
+router.get("/account-signUp", accountController.signUp);
 
 // Routes | status codes
 

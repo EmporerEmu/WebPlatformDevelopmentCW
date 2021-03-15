@@ -22,6 +22,15 @@ class Tasks {
       added: "01/02/2020",
     });
     console.log("DB Task inserted");
+    this.db.insert({
+      name: "Flying session",
+      type: "Something else",
+      startTime: "14:45",
+      endTime: "17:30",
+      duration: "",
+      added: "01/02/2020",
+    });
+    console.log("DB Task inserted");
   }
 
   addTask(name, type, startTime, endTime) {

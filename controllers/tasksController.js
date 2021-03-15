@@ -5,9 +5,11 @@ const tasks = require("../models/tasksModels");
 const db = new tasks();
 db.init();
 
+
+
 // /add
 exports.addActivity = function (req, res) {
-  res.render("addActivity", {
+  res.render("activities-add", {
     title: "Fitness - Add Activities",
   });
 };
@@ -15,13 +17,22 @@ exports.addActivity = function (req, res) {
 // POST: /add
 exports.postAddActivity = function (req, res) {
   console.log("Procesing...");
-  if(!req.body.name) {
+  if (!req.body.name) {
     response.status(400).send("Activity must have a name.");
     return;
   }
-  db.addTask(req.body.name, req.body.type, req.body.startTime, req.body.endTime);
+  db.addTask(
+    req.body.name,
+    req.body.type,
+    req.body.startTime,
+    req.body.endTime
+  );
   db.getAllTasks();
-  res.redirect("/viewPlanner");
+  res.redirect("/activities-planner");
+};
+
+exports.editDeleteActivity = function(req, res) {
+  res.render("")
 }
 
 // viewPlanner
@@ -30,14 +41,14 @@ exports.viewPlanner = function (req, res) {
   //   title: "Fitness - Schedule",
   // });
   db.getAllTasks()
-  .then((list) => {
-    res.render("viewPlanner", {
-      title: "Fitness - Schedule",
-      tasks: list,
+    .then((list) => {
+      res.render("activities-planner", {
+        title: "Fitness - Schedule",
+        tasks: list,
+      });
+      console.log("promise resolved");
+    })
+    .catch((err) => {
+      console.log("Promise rejected", err);
     });
-    console.log("promise resolved");
-  })
-  .catch((err) => {
-    console.log("Promise rejected", err);
-  })
 };
