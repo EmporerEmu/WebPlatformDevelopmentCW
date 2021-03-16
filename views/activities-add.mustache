@@ -15,7 +15,7 @@
             class="form-control"
             id="activityName"
             name="name"
-            
+            required
           />
           <div id="activityHelp" class="form-text">
             Short descriptive names work best
@@ -35,11 +35,25 @@
             <option value="Running"></option>
             <option value="Swimming"></option>
             <option value="Lifting"></option>
+            <option value="Cycling"></option>
             <option value="Something else"></option>
           </datalist>
+          <div id="activityTypeHelp" class="form-text">
+            You can add your own activity types!
+          </div>
         </div>
 
         <div class="row">
+          <div class="col">
+            <label for="date" class="form-label">Date</label>
+            <input
+              class="form-control"
+              type="date"
+              id="date"
+              name="date"
+              required
+            />
+          </div>
           <div class="col">
             <label for="startTime" class="form-label">Start Time</label>
             <input

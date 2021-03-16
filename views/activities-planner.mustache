@@ -14,31 +14,60 @@
       >
         <thead>
           <tr>
+            <th hidden style="display: none" scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Type</th>
+            <th scope="col">Date</th>
             <th scope="col">Start Time</th>
             <th scope="col">End Time</th>
-            <th scope="col">Date Added</th>
-            <th scope="col">Edit/Delete</th>
-            <th hidden style="display: none;" scope="col">ID</th>
+            <th scope="col">Completion Status</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           {{#tasks}}
           <tr>
+            <td hidden style="display: none">{{ _id }}</td>
             <td>{{ name }}</td>
             <td>{{ type }}</td>
+            <td>{{ date }}</td>
             <td>{{ startTime }}</td>
             <td>{{ endTime }}</td>
-            <td>{{ added }}</td>
+            <td>{{ activityComplete }}</td>
             <td>
-              <a href="/new" class="btn btn-danger">Edit/Delete</a>
+              <!--<a href="/activities-edit" class="btn btn-danger">Edit/Delete</a>-->
+              <form action="" method="POST">
+                <button
+                  type="submit"
+                  name="editButton"
+                  value="{{ _id }}"
+                  class="btn btn-warning"
+                >
+                  Edit/Delete
+                </button>
+              </form>
             </td>
-            <td hidden style="display: none;">{{ _id }}</td>
+            <td>
+              <form action="" method="POST">
+                <button
+                  type="submit"
+                  name="deleteButton"
+                  value="{{ _id }}"
+                  class="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </form>
+            </td>
           </tr>
           {{/tasks}}
         </tbody>
       </table>
+      {{^tasks}}
+      <h1>You have no activities listed here</h1>
+      <h1>I find your lack of fitness disturbing</h1>
+      {{/tasks}}
     </div>
 
     <script

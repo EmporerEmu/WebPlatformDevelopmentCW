@@ -27,6 +27,6 @@ app.use("/", router);
 
 
 // Server start
-app.listen(8080, () => {
+app.listen(3000, () => {
   console.log("Server started. Ctrl^C to exit.")
 })

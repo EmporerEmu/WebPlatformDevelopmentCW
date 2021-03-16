@@ -5,16 +5,14 @@ const tasks = require("../models/tasksModels");
 const db = new tasks();
 db.init();
 
-
-
-// /add
+// /activities-add
 exports.addActivity = function (req, res) {
   res.render("activities-add", {
     title: "Fitness - Add Activities",
   });
 };
 
-// POST: /add
+// POST: /activities-add
 exports.postAddActivity = function (req, res) {
   console.log("Procesing...");
   if (!req.body.name) {
@@ -24,6 +22,7 @@ exports.postAddActivity = function (req, res) {
   db.addTask(
     req.body.name,
     req.body.type,
+    req.body.date,
     req.body.startTime,
     req.body.endTime
   );
@@ -31,15 +30,15 @@ exports.postAddActivity = function (req, res) {
   res.redirect("/activities-planner");
 };
 
-exports.editDeleteActivity = function(req, res) {
-  res.render("")
-}
+// /activities-share
+exports.shareActivity = function (req, res) {
+  res.render("activities-share", {
+    title: "Fitness - Share",
+  });
+};
 
 // viewPlanner
 exports.viewPlanner = function (req, res) {
-  // res.render("viewPlanner", {
-  //   title: "Fitness - Schedule",
-  // });
   db.getAllTasks()
     .then((list) => {
       res.render("activities-planner", {
@@ -51,4 +50,16 @@ exports.viewPlanner = function (req, res) {
     .catch((err) => {
       console.log("Promise rejected", err);
     });
+};
+
+// deleteTask
+exports.deleteTask = function (req, res) {
+  db.deleteTask(req.body.deleteButton);
+  res.redirect("/activities-planner");
+};
+
+// /activities-edit
+exports.editDeleteActivity = function (req, res) {
+  db.getTaskByID(req.body.editButton);
+  res.redirect("/activities-edit");
 };

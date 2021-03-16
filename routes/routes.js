@@ -17,6 +17,15 @@ router.post("/activities-add", tasksController.postAddActivity);
 
 router.get("/activities-planner", tasksController.viewPlanner);
 
+router.get("/activities-edit", tasksController.editDeleteActivity);
+
+router.get("/activities-share", tasksController.shareActivity);
+
+// testing
+router.post("/activities-planner", tasksController.deleteTask);
+
+router.post("/activities-planner", tasksController.editDeleteActivity);
+
 // Account
 router.get("/account-login", accountController.login);
 
