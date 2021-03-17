@@ -109,13 +109,40 @@ class Tasks {
 
   getTaskByID(ID) {
     return new Promise((resolve, reject) => {
-      this.db.findOne({ _id: ID }, {}, function (err, doc) {
+      this.db.find({ _id: ID }, {}, function (err, doc) {
         if (err) {
           reject(err);
         } else {
+          resolve(doc);
           console.log("Document got", doc);
         }
       });
+    });
+  }
+
+  updateTask(name, type, date, startTime, endTime, ID) {
+    return new Promise((resolve, reject) => {
+      this.db.update(
+        { _id: ID },
+        {
+          $set: {
+            name: name,
+            type: type,
+            date: date,
+            startTime: startTime,
+            endTime: endTime,
+          },
+        },
+        // {},
+        function (err, doc) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(doc);
+            console.log("Document updated: ", doc);
+          }
+        }
+      );
     });
   }
 } // end of class

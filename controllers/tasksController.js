@@ -26,7 +26,7 @@ exports.postAddActivity = function (req, res) {
     req.body.startTime,
     req.body.endTime
   );
-  db.getAllTasks();
+  // db.getAllTasks();
   res.redirect("/activities-planner");
 };
 
@@ -58,8 +58,29 @@ exports.deleteTask = function (req, res) {
   res.redirect("/activities-planner");
 };
 
-// /activities-edit
-exports.editDeleteActivity = function (req, res) {
-  db.getTaskByID(req.body.editButton);
-  res.redirect("/activities-edit");
+exports.editTask = function (req, res) {
+  let user = req.params._id;
+  db.getTaskByID(user)
+    .then((task) => {
+      res.render("activities-edit", {
+        title: "Fitness Tracker - Edit Tasks",
+        task: task,
+      });
+    })
+    .catch((err) => {
+      console.log("Error handling user task", err);
+    });
+};
+
+// post
+exports.postEditTask = function (req, res) {
+  db.updateTask(
+    req.body.name,
+    req.body.type,
+    req.body.date,
+    req.body.startTime,
+    req.body.endTime,
+    req.params._id
+  );
+  res.redirect("/activities-planner");
 };

@@ -21,8 +21,8 @@
             <th scope="col">Start Time</th>
             <th scope="col">End Time</th>
             <th scope="col">Completion Status</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -34,20 +34,8 @@
             <td>{{ date }}</td>
             <td>{{ startTime }}</td>
             <td>{{ endTime }}</td>
-            <td>{{ activityComplete }}</td>
-            <td>
-              <!--<a href="/activities-edit" class="btn btn-danger">Edit/Delete</a>-->
-              <form action="" method="POST">
-                <button
-                  type="submit"
-                  name="editButton"
-                  value="{{ _id }}"
-                  class="btn btn-warning"
-                >
-                  Edit/Delete
-                </button>
-              </form>
-            </td>
+            <td><input type="checkbox"></td>
+            <td><a href="/activities-edit/{{ _id }}" class="btn btn-warning">Edit</a></td>
             <td>
               <form action="" method="POST">
                 <button
