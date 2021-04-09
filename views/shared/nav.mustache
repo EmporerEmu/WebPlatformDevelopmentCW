@@ -1,37 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">Fitness Task Tracker</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
+<header class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Your Tasks
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/activities-planner">View Schedule</a></li>
-                        <li><a class="dropdown-item" href="/activities-add">Add/Edit Tasks</a></li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/activities-share">Share</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/account-login" tabindex="-1">Sign Up/Login</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <img src="/assets/images/310874.svg" alt="" width="40" height="32">
+        <span class="fs-4">Fitness</span>
+    </a>
+
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a href="/activities-planner" class="me-3 py-2 text-dark text-decoration-none">Your Fitness</a>
+        <a href="" class="me-3 py-2 text-dark text-decoration-none">Login/Sign Up</a>
+    </nav>
+</header>
