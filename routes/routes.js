@@ -25,8 +25,6 @@ router.post("/activities-edit/:_id", tasksController.postEditTask);
 
 router.get("/activities-share", tasksController.shareActivity);
 
-// testing
-
 // Account
 router.get("/account-login", accountController.login);
 
