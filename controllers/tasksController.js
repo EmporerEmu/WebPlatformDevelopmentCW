@@ -7,7 +7,7 @@ db.init();
 
 // /activities-add
 exports.addActivity = function (req, res) {
-  res.render("activities-add", {
+  res.render("activities/activities-add", {
     title: "Fitness - Add Activities",
   });
 };
@@ -32,7 +32,7 @@ exports.postAddActivity = function (req, res) {
 
 // /activities-share
 exports.shareActivity = function (req, res) {
-  res.render("activities-share", {
+  res.render("activities/activities-share", {
     title: "Fitness - Share",
   });
 };
@@ -41,7 +41,7 @@ exports.shareActivity = function (req, res) {
 exports.viewPlanner = function (req, res) {
   db.getAllTasks()
     .then((list) => {
-      res.render("activities-planner", {
+      res.render("activities/activities-planner", {
         title: "Fitness - Schedule",
         tasks: list,
       });
@@ -62,7 +62,7 @@ exports.editTask = function (req, res) {
   let user = req.params._id;
   db.getTaskByID(user)
     .then((task) => {
-      res.render("activities-edit", {
+      res.render("activities/activities-edit", {
         title: "Fitness Tracker - Edit Tasks",
         task: task,
       });
