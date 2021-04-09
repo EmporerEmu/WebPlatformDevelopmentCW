@@ -28,7 +28,9 @@ router.get("/activities-share", tasksController.shareActivity);
 // Account
 router.get("/account-login", accountController.login);
 
-router.get("/account-signUp", accountController.signUp);
+router.get("/account-signup", accountController.signUp);
+
+router.post("/account-signup", accountController.postSignUp);
 
 // Routes | status codes
 
