@@ -26,10 +26,12 @@ router.post("/activities-edit/:_id", tasksController.postEditTask);
 
 router.get("/activities-share", tasksController.shareActivity);
 
+router.get("/activities-sidebar", tasksController.sidebar);
+
 // Account
 router.get("/account-login", accountController.login);
 
-router.post("/account-login",auth.authorize('/'), accountController.postLogin);
+router.post("/account-login", auth.authorize("/"), accountController.postLogin);
 
 router.get("/account-signup", accountController.signUp);
 
@@ -38,15 +40,15 @@ router.post("/account-signup", accountController.postSignUp);
 // Routes | status codes
 
 router.use(function (req, res) {
-  res.status(400);
-  res.type("text/plain");
-  res.send("404 Not found");
+	res.status(400);
+	res.type("text/plain");
+	res.send("404 Not found");
 });
 
 router.use(function (err, req, res, next) {
-  res.status(500);
-  res.type("text/plain");
-  res.send("Internal server error");
+	res.status(500);
+	res.type("text/plain");
+	res.send("Internal server error");
 });
 
 module.exports = router;
