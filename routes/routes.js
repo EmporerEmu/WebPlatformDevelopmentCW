@@ -29,7 +29,7 @@ router.get("/activities-share", tasksController.shareActivity);
 // Account
 router.get("/account-login", accountController.login);
 
-router.post("/account-login",auth.authorize('/account-login'), accountController.postLogin);
+router.post("/account-login",auth.authorize('/'), accountController.postLogin);
 
 router.get("/account-signup", accountController.signUp);
 
