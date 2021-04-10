@@ -3,6 +3,7 @@ const express = require("express");
 const homeController = require("../controllers/homeController");
 const tasksController = require("../controllers/tasksController");
 const accountController = require("../controllers/accountController");
+const auth = require("../auth/auth");
 
 const router = express.Router();
 
@@ -27,6 +28,8 @@ router.get("/activities-share", tasksController.shareActivity);
 
 // Account
 router.get("/account-login", accountController.login);
+
+router.post("/account-login",auth.authorize('/account-login'), accountController.postLogin);
 
 router.get("/account-signup", accountController.signUp);
 
