@@ -1,7 +1,9 @@
-// Adding 'active' to nav link class on pages other than the root
-// something like this:
-$(function () {
-  $('nav a[href^="/' + location.pathname.split("/")[1] + '"]').addClass(
-    "active"
-  );
+$(function ($) {
+	let url = window.location.href;
+	$("li a").each(function () {
+		if (this.href === url) {
+			$(this).closest("a").addClass("link-secondary");
+            $(this).closest("a").removeClass("link-dark")
+		}
+	});
 });
