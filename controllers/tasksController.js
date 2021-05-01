@@ -47,6 +47,8 @@ exports.viewPlanner = function (req, res) {
 				title: "Fitness - Schedule",
 				tasks: list,
 				user: req.user,
+				// planner: "link-dark",
+                // planner: "link-secondary"
 			});
 			console.log("promise resolved");
 		})
