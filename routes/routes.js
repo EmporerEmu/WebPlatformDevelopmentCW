@@ -17,7 +17,7 @@ router.get("/activities-add", ensureLoggedIn("/account-login"), tasksController.
 
 router.post("/activities-add", ensureLoggedIn("/account-login"), tasksController.postAddActivity);
 
-router.get("/activities-planner", ensureLoggedIn("/account-login"), tasksController.viewPlanner);
+router.get("/activities-planner",  tasksController.viewPlanner);
 
 router.post("/activities-planner", tasksController.deleteTask);
 
