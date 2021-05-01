@@ -11,10 +11,9 @@ db.init();
 //   res.send("<h1>Not yet Implemented. Landing page</h1>");
 // }
 
-exports.landingPage = function(req, res) {
-  res.render("landingPage",
-  {
-    title: "Fitness - Landing Page"
-  })
-}
-
+exports.landingPage = function (req, res) {
+	res.render("landingPage", {
+		title: "Fitness - Landing Page",
+		user: req.user,
+	});
+};

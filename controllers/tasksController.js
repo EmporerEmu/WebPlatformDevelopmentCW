@@ -9,6 +9,7 @@ db.init();
 exports.addActivity = function (req, res) {
 	res.render("activities/activities-add", {
 		title: "Fitness - Add Activities",
+		user: req.user,
 	});
 };
 
@@ -34,6 +35,7 @@ exports.postAddActivity = function (req, res) {
 exports.shareActivity = function (req, res) {
 	res.render("activities/activities-share", {
 		title: "Fitness - Share",
+		user: req.user,
 	});
 };
 
@@ -44,6 +46,7 @@ exports.viewPlanner = function (req, res) {
 			res.render("activities/activities-planner", {
 				title: "Fitness - Schedule",
 				tasks: list,
+				user: req.user,
 			});
 			console.log("promise resolved");
 		})

@@ -66,3 +66,4 @@ class User {
 const dao = new User();
 dao.init();
 module.exports = dao;
+

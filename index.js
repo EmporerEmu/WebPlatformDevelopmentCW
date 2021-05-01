@@ -22,6 +22,7 @@ const views = path.join(__dirname, "views");
 app.use(express.static(public));
 app.use(express.static(views));
 
+
 // Creating and registering the template engine for the app
 app.engine("mustache", mustacheExpress());
 app.set("view engine", "mustache");
@@ -44,7 +45,11 @@ auth.init(app);
 // Mapping router to all requests starting from the root
 app.use("/", router);
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 3000
+}
 // Server start
-app.listen(3000, () => {
+app.listen(port, () => {
 	console.log("Server started. Ctrl^C to exit.");
 });

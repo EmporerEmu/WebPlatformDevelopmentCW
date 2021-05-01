@@ -10,7 +10,8 @@ exports.login = function (req, res) {
 
 // post: login
 exports.postLogin = function (req, res) {
-	response.redirect("/");
+	console.log("this is post login");
+	res.redirect("/");
 };
 
 // /signUp
@@ -40,5 +41,8 @@ exports.postSignUp = function (req, res) {
 	});
 };
 
-// post: logout
-
+// logout
+exports.logout = function (req, res) {
+	req.logout();
+	res.redirect("/");
+};
