@@ -25,7 +25,8 @@ exports.postAddActivity = function (req, res) {
 		req.body.type,
 		req.body.date,
 		req.body.startTime,
-		req.body.endTime
+		req.body.endTime,
+		req.user.user
 	);
 	// db.getAllTasks();
 	res.redirect("/activities-planner");
@@ -41,14 +42,14 @@ exports.shareActivity = function (req, res) {
 
 // viewPlanner
 exports.viewPlanner = function (req, res) {
-	db.getAllTasks()
+	var username = req.user.user;
+	db.getTaskByUsername(username)
 		.then((list) => {
 			res.render("activities/activities-planner", {
 				title: "Fitness - Schedule",
 				tasks: list,
 				user: req.user,
-				// planner: "link-dark",
-                // planner: "link-secondary"
+				// week: list.date.getDay()
 			});
 			console.log("promise resolved");
 		})
@@ -70,6 +71,7 @@ exports.editTask = function (req, res) {
 			res.render("activities/activities-edit", {
 				title: "Fitness Tracker - Edit Tasks",
 				task: task,
+				user: req.user,
 			});
 		})
 		.catch((err) => {

@@ -10,6 +10,7 @@
             <li><a href="/activities-planner" class="nav-link px-2 link-dark">TODOS</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">Your Fitness</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">Account</a></li>
+            <li><a href="/activities-add" class="nav-link px-2 link-dark">Add</a></li>
             <li><a href="/activities-share" class="nav-link px-2 link-dark">Share</a></li>
         </ul>
         {{/user}}
@@ -20,6 +21,7 @@
             <a href="/account-signup" class="btn btn-secondary btn-sm me-3 py-2">Sign Up</a>
             {{/user}}
             {{#user}}
+            <a href="#" class="me-3 py-2 text-dark text-decoration-none">{{user}}</a>
             <a href="/account-logout" class="me-3 py-2 text-dark text-decoration-none">Logout</a>
             {{/user}}
         </div>
