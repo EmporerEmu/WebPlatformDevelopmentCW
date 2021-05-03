@@ -70,7 +70,7 @@ class Tasks {
 		var entry = {
 			name: name,
 			type: type,
-			date: date,
+			date: new Date(date).toLocaleDateString("en-gb"),
 			startTime: startTime,
 			endTime: endTime,
 			username: username,
@@ -146,7 +146,7 @@ class Tasks {
 					$set: {
 						name: name,
 						type: type,
-						date: date,
+						date: new Date(date).toLocaleDateString("en-gb"),
 						startTime: startTime,
 						endTime: endTime,
 					},
