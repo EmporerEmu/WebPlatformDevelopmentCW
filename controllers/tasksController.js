@@ -92,7 +92,8 @@ exports.postEditTask = function (req, res) {
 	res.redirect("/activities-planner");
 };
 
-// sidebar
-exports.sidebar = function (req, res) {
-	res.render("activities/activities-sidebar");
-};
+// post complete
+exports.completeTask = function (req, res) {
+    db.completeTask(req.body.completeButton);
+    res.redirect("/activities-planner");
+}

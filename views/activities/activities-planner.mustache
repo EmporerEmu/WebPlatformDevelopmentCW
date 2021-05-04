@@ -33,6 +33,7 @@
                             <th scope="col">Completion Status</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
+                            <th scope="col">Complete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,16 +46,25 @@
                             <td>{{ startTime }}</td>
                             <td>{{ endTime }}</td>
                             <td>
-                                {{^completed}}<input type="checkbox" id="completionCheckFalse" value={{completed}}>{{/completed}}
-                                {{#completed}}<input type="checkbox" id="completionCheckTrue" value={{completed}} checked>{{/completed}}
+                                {{^completed}}<input type="checkbox" id="completionCheckFalse" value={{completed}} disabled>{{/completed}}
+                                {{#completed}}<input type="checkbox" id="completionCheckTrue" value={{completed}} checked disabled>{{/completed}}
                             </td>
-                            <td><a href="/activities-edit/{{ _id }}" class="btn btn-warning">Edit</a></td>
+                            <td><a href="/activities-edit/{{ _id }}" class="btn btn-outline-warning">Edit</a></td>
                             <td>
                                 <form action="" method="POST">
                                     <button type="submit" name="deleteButton" value="{{ _id }}" class="btn btn-danger">
                                         Delete
                                     </button>
                                 </form>
+                            </td>
+                            <td>
+                                {{^completed}}
+                                <form action="" method="POST">
+                                    <button type="submit" name="completeButton" value="{{ _id }}" class="btn btn-outline-success">
+                                        Complete workout
+                                    </button>
+                                </form>
+                                {{/completed}}
                             </td>
                         </tr>
                         {{/tasks}}
@@ -66,7 +76,28 @@
                 {{/tasks}}
             </div>
         </div>
-
+        {{#tasks}}
+        <div class="row">
+            <div class="col">
+                {{day}}
+            </div>
+            <div class="col">
+                {{name}}
+            </div>
+            <div class="col">
+                {{type}}
+            </div>
+            <div class="col">
+                {{date}}
+            </div>
+            <div class="col">
+                {{startTime}}
+            </div>
+            <div class="col">
+                {{endTime}}
+            </div>
+        </div>
+        {{/tasks}}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"

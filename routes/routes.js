@@ -19,7 +19,8 @@ router.post("/activities-add", ensureLoggedIn("/account-login"), tasksController
 
 router.get("/activities-planner",  tasksController.viewPlanner);
 
-router.post("/activities-planner", tasksController.deleteTask);
+// TODO: move delete into update
+// router.post("/activities-planner", tasksController.deleteTask);
 
 router.get("/activities-edit/:_id", tasksController.editTask);
 
@@ -27,7 +28,7 @@ router.post("/activities-edit/:_id", tasksController.postEditTask);
 
 router.get("/activities-share", tasksController.shareActivity);
 
-router.get("/activities-sidebar", tasksController.sidebar);
+router.post("/activities-planner", tasksController.completeTask);
 
 // Account
 router.get("/account-login", accountController.login);

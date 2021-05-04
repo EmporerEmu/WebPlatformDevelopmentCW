@@ -46,7 +46,7 @@ class Tasks {
 			endTime: "10:45",
 			duration: "",
 			added: "05/05/2021",
-			completed: true,
+			completed: false,
 			username: "ann@gmail.com",
 		});
 		console.log("DB Task inserted");
@@ -59,7 +59,7 @@ class Tasks {
 			duration: "",
 			added: "06/05/2021",
 			completed: false,
-			username: "ann@gmail.com",
+			username: "peter@gmail.com",
 		});
 		console.log("DB Task inserted");
 	}
@@ -149,6 +149,29 @@ class Tasks {
 						date: new Date(date).toLocaleDateString("en-gb"),
 						startTime: startTime,
 						endTime: endTime,
+					},
+				},
+				// {},
+				function (err, doc) {
+					if (err) {
+						reject(err);
+                        console.log("Document not updated", err);
+					} else {
+						resolve(doc);
+						console.log("Document updated: ", doc);
+					}
+				}
+			);
+		});
+	}
+
+	completeTask(ID) {
+		return new Promise((resolve, reject) => {
+			this.db.update(
+				{ _id: ID },
+				{
+					$set: {
+						completed: true,
 					},
 				},
 				// {},
