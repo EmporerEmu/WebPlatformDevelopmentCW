@@ -32,7 +32,6 @@
                             <th scope="col">End Time</th>
                             <th scope="col">Completion Status</th>
                             <th scope="col">Edit</th>
-                            <th scope="col">Delete</th>
                             <th scope="col">Complete</th>
                         </tr>
                     </thead>
@@ -46,21 +45,17 @@
                             <td>{{ startTime }}</td>
                             <td>{{ endTime }}</td>
                             <td>
-                                {{^completed}}<input type="checkbox" id="completionCheckFalse" value={{completed}} disabled>{{/completed}}
-                                {{#completed}}<input type="checkbox" id="completionCheckTrue" value={{completed}} checked disabled>{{/completed}}
+                                {{^completed}}<input type="checkbox" id="completionCheckFalse" value={{completed}}
+                                    disabled>{{/completed}}
+                                {{#completed}}<input type="checkbox" id="completionCheckTrue" value={{completed}}
+                                    checked disabled>{{/completed}}
                             </td>
                             <td><a href="/activities-edit/{{ _id }}" class="btn btn-outline-warning">Edit</a></td>
                             <td>
-                                <form action="" method="POST">
-                                    <button type="submit" name="deleteButton" value="{{ _id }}" class="btn btn-danger">
-                                        Delete
-                                    </button>
-                                </form>
-                            </td>
-                            <td>
                                 {{^completed}}
                                 <form action="" method="POST">
-                                    <button type="submit" name="completeButton" value="{{ _id }}" class="btn btn-outline-success">
+                                    <button type="submit" name="completeButton" value="{{ _id }}"
+                                        class="btn btn-outline-success">
                                         Complete workout
                                     </button>
                                 </form>
@@ -108,6 +103,7 @@
         crossorigin="anonymous"></script>
     <script src="/js/addActiveClass.js"></script>
     <script src="/js/completionListener.js"></script>
+    <!-- <script src="/js/getDays.js"></script> -->
     {{/user}}
 </body>
 
