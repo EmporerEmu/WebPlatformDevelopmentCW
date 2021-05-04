@@ -1,6 +1,5 @@
 const nedb = require("nedb");
 const { resolve } = require("path");
-const DatabaseSeed = require("./dbSeed");
 
 class Tasks {
 	constructor(dbFilePath) {
@@ -18,10 +17,6 @@ class Tasks {
 			name: "Morning Cardio",
 			type: "Swimming",
 			date: "03/05/2021",
-			startTime: "12:30",
-			endTime: "13:30",
-			duration: "",
-			added: "01/05/2020",
 			completed: true,
 			username: "ann@gmail.com",
 		});
@@ -30,10 +25,6 @@ class Tasks {
 			name: "Flying session",
 			type: "Something else",
 			date: "04/05/2021",
-			startTime: "14:45",
-			endTime: "17:30",
-			duration: "",
-			added: "04/05/2020",
 			completed: false,
 			username: "ann@gmail.com",
 		});
@@ -42,10 +33,6 @@ class Tasks {
 			name: "Leg Day",
 			type: "Lifting",
 			date: "05/05/2021",
-			startTime: "09:45",
-			endTime: "10:45",
-			duration: "",
-			added: "05/05/2021",
 			completed: false,
 			username: "ann@gmail.com",
 		});
@@ -54,27 +41,21 @@ class Tasks {
 			name: "New Year New Me",
 			type: "Something else",
 			date: "06/05/2021",
-			startTime: "09:00",
-			endTime: "10:00",
-			duration: "",
-			added: "06/05/2021",
 			completed: false,
 			username: "peter@gmail.com",
 		});
 		console.log("DB Task inserted");
 	}
 
-	addTask(name, type, date, startTime, endTime, username) {
+	addTask(name, type, date, username) {
 		// var duration = endTime.getHours() - startTime.getHours();
 		// console.log(duration);
 		var entry = {
 			name: name,
 			type: type,
 			date: new Date(date).toLocaleDateString("en-gb"),
-			startTime: startTime,
-			endTime: endTime,
 			username: username,
-			added: new Date().toLocaleDateString("en-gb"),
+            completed: false,
 		};
 		console.log("Entry created", entry);
 
@@ -100,17 +81,7 @@ class Tasks {
 		});
 	}
 
-	// deleteTask(ID) {
-	// 	return new Promise((resolve, reject) => {
-	// 		this.db.remove({ _id: ID }, {}, function (err, docRem) {
-	// 			if (err) {
-	// 				reject(err);
-	// 			} else {
-	// 				console.log("Document removed from db");
-	// 			}
-	// 		});
-	// 	});
-	// }
+
 
 	deleteTask(ID) {
 		return new Promise((resolve, reject) => {
@@ -118,6 +89,7 @@ class Tasks {
 				if (err) {
 					reject(err);
 				} else {
+                    resolve(docRem);
 					console.log("Document removed from db");
 				}
 			});
@@ -150,7 +122,7 @@ class Tasks {
 		});
 	}
 
-	updateTask(name, type, date, startTime, endTime, ID) {
+	updateTask(name, type, date, ID) {
 		return new Promise((resolve, reject) => {
 			this.db.update(
 				{ _id: ID },
@@ -159,8 +131,6 @@ class Tasks {
 						name: name,
 						type: type,
 						date: new Date(date).toLocaleDateString("en-gb"),
-						startTime: startTime,
-						endTime: endTime,
 					},
 				},
 				// {},

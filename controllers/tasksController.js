@@ -27,8 +27,6 @@ exports.postAddActivity = function (req, res) {
 		req.body.name,
 		req.body.type,
 		req.body.date,
-		req.body.startTime,
-		req.body.endTime,
 		req.user.user
 	);
 	// db.getAllTasks();
@@ -94,8 +92,6 @@ exports.postEditTask = function (req, res) {
 		req.body.name,
 		req.body.type,
 		req.body.date,
-		req.body.startTime,
-		req.body.endTime,
 		req.params._id
 	);
 	res.redirect("/activities-planner");

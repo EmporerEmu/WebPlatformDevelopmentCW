@@ -1,10 +1,7 @@
 // Imports
 const { response } = require("express");
-const seed = require("../models/dbSeed");
 
 // Instance of DB
-const db = new seed();
-db.init();
 
 // root
 // exports.landingPage = function(req, res) {
