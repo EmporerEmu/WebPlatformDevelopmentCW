@@ -100,6 +100,18 @@ class Tasks {
 		});
 	}
 
+	// deleteTask(ID) {
+	// 	return new Promise((resolve, reject) => {
+	// 		this.db.remove({ _id: ID }, {}, function (err, docRem) {
+	// 			if (err) {
+	// 				reject(err);
+	// 			} else {
+	// 				console.log("Document removed from db");
+	// 			}
+	// 		});
+	// 	});
+	// }
+
 	deleteTask(ID) {
 		return new Promise((resolve, reject) => {
 			this.db.remove({ _id: ID }, {}, function (err, docRem) {

@@ -19,8 +19,9 @@ router.post("/activities-add", ensureLoggedIn("/account-login"), tasksController
 
 router.get("/activities-planner",  tasksController.viewPlanner);
 
-// TODO: move delete into update
-// router.post("/activities-planner", tasksController.deleteTask);
+router.get("/activities-delete/:_id", tasksController.deleteTask);
+
+router.post("/activities-delete/:_id", tasksController.postDeleteTask);
 
 router.get("/activities-edit/:_id", tasksController.editTask);
 

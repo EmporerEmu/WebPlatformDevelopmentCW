@@ -5,6 +5,9 @@ const tasks = require("../models/tasksModels");
 const db = new tasks();
 db.init();
 
+const validations = require("../public/js/validations");
+const vali = new validations();
+
 // /activities-add
 exports.addActivity = function (req, res) {
 	res.render("activities/activities-add", {
@@ -52,15 +55,21 @@ exports.viewPlanner = function (req, res) {
 				// week: list.date.getDay()
 			});
 			console.log("promise resolved");
+			vali.getDays();
 		})
 		.catch((err) => {
 			console.log("Promise rejected", err);
 		});
 };
 
-// deleteTask
+//activities-delete
 exports.deleteTask = function (req, res) {
-	db.deleteTask(req.body.deleteButton);
+	res.render("activities/activities-delete", {});
+};
+
+// activities-delete [POST]
+exports.postDeleteTask = function (req, res) {
+    db.deleteTask(req.params._id);
 	res.redirect("/activities-planner");
 };
 
@@ -94,6 +103,6 @@ exports.postEditTask = function (req, res) {
 
 // post complete
 exports.completeTask = function (req, res) {
-    db.completeTask(req.body.completeButton);
-    res.redirect("/activities-planner");
-}
+	db.completeTask(req.body.completeButton);
+	res.redirect("/activities-planner");
+};
