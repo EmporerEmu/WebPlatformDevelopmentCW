@@ -50,7 +50,6 @@ exports.viewPlanner = function (req, res) {
 				title: "Fitness - Schedule",
 				tasks: list,
 				user: req.user,
-				// week: list.date.getDay()
 			});
 			console.log("promise resolved");
 			vali.getDays();

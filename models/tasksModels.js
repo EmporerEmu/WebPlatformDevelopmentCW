@@ -1,5 +1,7 @@
 const nedb = require("nedb");
 const { resolve } = require("path");
+const validations = require("../public/js/validations");
+const vali = new validations();
 
 class Tasks {
 	constructor(dbFilePath) {
@@ -81,8 +83,6 @@ class Tasks {
 		});
 	}
 
-
-
 	deleteTask(ID) {
 		return new Promise((resolve, reject) => {
 			this.db.remove({ _id: ID }, {}, function (err, docRem) {
@@ -115,6 +115,7 @@ class Tasks {
 				if (err) {
 					reject(err);
 				} else {
+                    vali.sortByDateDesc(doc);
 					resolve(doc);
 					console.log("document got", doc);
 				}
