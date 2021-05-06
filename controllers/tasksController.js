@@ -1,9 +1,15 @@
 // Imports
 const { response } = require("express");
 const tasks = require("../models/tasksModels");
+const Week = require("../models/weekModel");
+const Weeks = require("../models/weekModel");
 
 const db = new tasks();
 db.init();
+
+const week = new Week();
+week.init();
+week.getAllWeeks();
 
 const validations = require("../public/js/validations");
 const vali = new validations();
@@ -53,6 +59,20 @@ exports.viewPlanner = function (req, res) {
 			});
 			console.log("promise resolved");
 			vali.getDays();
+		})
+		.catch((err) => {
+			console.log("Promise rejected", err);
+		});
+};
+
+exports.viewPlanner2 = function (req, res) {
+	week.getAllWeeks()
+		.then((list) => {
+			res.render("activities/activities-planner2", {
+				title: "Fitness - Schedule",
+				tasks: list,
+			});
+			console.log("promise resolved");
 		})
 		.catch((err) => {
 			console.log("Promise rejected", err);
