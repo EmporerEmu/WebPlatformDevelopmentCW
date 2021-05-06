@@ -16,6 +16,34 @@ class Tasks {
 	// Seeding tasks into the database
 	init() {
 		this.db.insert({
+			name: "Last month test",
+			type: "Swimming",
+			date: "26/04/2021",
+			completed: true,
+			username: "ann@gmail.com",
+		});
+		this.db.insert({
+			name: "Last month test",
+			type: "Swimming",
+			date: "27/04/2021",
+			completed: true,
+			username: "ann@gmail.com",
+		});
+		this.db.insert({
+			name: "Last month test",
+			type: "Swimming",
+			date: "01/05/2021",
+			completed: true,
+			username: "ann@gmail.com",
+		});
+		this.db.insert({
+			name: "Last month test",
+			type: "Swimming",
+			date: "02/05/2021",
+			completed: true,
+			username: "ann@gmail.com",
+		});
+		this.db.insert({
 			name: "Morning Cardio",
 			type: "Swimming",
 			date: "03/05/2021",
@@ -44,7 +72,7 @@ class Tasks {
 			type: "Something else",
 			date: "06/05/2021",
 			completed: false,
-			username: "peter@gmail.com",
+			username: "ann@gmail.com",
 		});
 		console.log("DB Task inserted");
 	}
