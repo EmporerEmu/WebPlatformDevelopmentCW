@@ -10,6 +10,7 @@ class Validations {
 			week.push(day);
 		}
 		console.log(week);
+        return week;
 	}
 
 	sortByDateDesc(list) {

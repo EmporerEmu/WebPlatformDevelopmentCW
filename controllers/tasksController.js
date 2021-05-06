@@ -29,12 +29,7 @@ exports.postAddActivity = function (req, res) {
 		response.status(400).send("Activity must have a name.");
 		return;
 	}
-	db.addTask(
-		req.body.name,
-		req.body.type,
-		req.body.date,
-		req.user.user
-	);
+	db.addTask(req.body.name, req.body.type, req.body.date, req.user.user);
 	// db.getAllTasks();
 	res.redirect("/activities-planner");
 };
@@ -66,7 +61,10 @@ exports.viewPlanner = function (req, res) {
 };
 
 exports.viewPlanner2 = function (req, res) {
-	week.getAllWeeks()
+	var currentWeek = vali.getDays();
+	console.log("Current week: " + currentWeek);
+	// week.currentWeekTasks(currentWeek);
+	week.currentWeekTasks(currentWeek)
 		.then((list) => {
 			res.render("activities/activities-planner2", {
 				title: "Fitness - Schedule",
@@ -86,7 +84,7 @@ exports.deleteTask = function (req, res) {
 
 // activities-delete [POST]
 exports.postDeleteTask = function (req, res) {
-    db.deleteTask(req.params._id);
+	db.deleteTask(req.params._id);
 	res.redirect("/activities-planner");
 };
 
@@ -107,12 +105,7 @@ exports.editTask = function (req, res) {
 
 // post
 exports.postEditTask = function (req, res) {
-	db.updateTask(
-		req.body.name,
-		req.body.type,
-		req.body.date,
-		req.params._id
-	);
+	db.updateTask(req.body.name, req.body.type, req.body.date, req.params._id);
 	res.redirect("/activities-planner");
 };
 
