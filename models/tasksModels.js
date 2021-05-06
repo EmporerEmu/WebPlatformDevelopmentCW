@@ -19,22 +19,24 @@ class Tasks {
 		this.db.insert({
 			name: "I don't understand",
 			type: "Running",
-			date: new Date('31 May 2021 12:00 UTC').toISOString().substring(0, 10),
+			date: new Date("31 May 2021 12:00 UTC")
+				.toISOString()
+				.substring(0, 10),
 			completed: true,
 			username: "ann@gmail.com",
 		});
 		this.db.insert({
 			name: "Like, really don't understand",
 			type: "Lifting",
-			date: "2021/04/27",
-			date: new Date("27 May 2021 12:00 UTC").toISOString().substring(0, 10),
+			date: new Date("27 May 2021 12:00 UTC")
+				.toISOString()
+				.substring(0, 10),
 			completed: true,
 			username: "ann@gmail.com",
 		});
 		this.db.insert({
 			name: "?",
 			type: "Swimming",
-			date: "2021/05/01",
 			date: new Date("1 May 2021 12:00 UTC")
 				.toISOString()
 				.substring(0, 10),
@@ -44,45 +46,52 @@ class Tasks {
 		this.db.insert({
 			name: "Morning Jog",
 			type: "Running",
-			// date: "02/05/2021",
 			date: new Date("2 May 2021 12:00 UTC")
 				.toISOString()
 				.substring(0, 10),
 			completed: true,
 			username: "ann@gmail.com",
 		});
-		// this.db.insert({
-		// 	name: "Morning Cardio",
-		// 	type: "Swimming",
-		// 	date: "03/05/2021",
-		// 	completed: true,
-		// 	username: "ann@gmail.com",
-		// });
-		// console.log("DB Task inserted");
-		// this.db.insert({
-		// 	name: "Flying session",
-		// 	type: "Something else",
-		// 	date: "04/05/2021",
-		// 	completed: false,
-		// 	username: "ann@gmail.com",
-		// });
-		// console.log("DB Task inserted");
-		// this.db.insert({
-		// 	name: "Leg Day",
-		// 	type: "Lifting",
-		// 	date: "05/05/2021",
-		// 	completed: false,
-		// 	username: "ann@gmail.com",
-		// });
-		// console.log("DB Task inserted");
-		// this.db.insert({
-		// 	name: "New Year New Me",
-		// 	type: "Something else",
-		// 	date: "06/05/2021",
-		// 	completed: false,
-		// 	username: "ann@gmail.com",
-		// });
-		// console.log("DB Task inserted");
+		this.db.insert({
+			name: "Morning Cardio",
+			type: "Swimming",
+			date: new Date("3 May 2021 12:00 UTC")
+				.toISOString()
+				.substring(0, 10),
+			completed: true,
+			username: "ann@gmail.com",
+		});
+		console.log("DB Task inserted");
+		this.db.insert({
+			name: "Flying session",
+			type: "Something else",
+			date: new Date("4 May 2021 12:00 UTC")
+				.toISOString()
+				.substring(0, 10),
+			completed: false,
+			username: "ann@gmail.com",
+		});
+		console.log("DB Task inserted");
+		this.db.insert({
+			name: "Leg Day",
+			type: "Lifting",
+			date: new Date("5 May 2021 12:00 UTC")
+				.toISOString()
+				.substring(0, 10),
+			completed: false,
+			username: "ann@gmail.com",
+		});
+		console.log("DB Task inserted");
+		this.db.insert({
+			name: "New Year New Me",
+			type: "Something else",
+			date: new Date("6 May 2021 12:00 UTC")
+				.toISOString()
+				.substring(0, 10),
+			completed: false,
+			username: "ann@gmail.com",
+		});
+		console.log("DB Task inserted");
 	}
 
 	addTask(name, type, date, username) {
@@ -149,7 +158,7 @@ class Tasks {
 				if (err) {
 					reject(err);
 				} else {
-					// vali.sortByDateAsc(doc);
+					vali.sortByDateDesc(doc);
 					resolve(doc);
 					console.log("document got", doc);
 				}
