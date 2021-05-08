@@ -12,27 +12,17 @@
         <form method="POST">
             <div class="mb-3">
                 <label for="activityName" class="form-label">Activity Name</label>
-                <input type="text" class="form-control" id="activityName" name="name" required value="{{name}}" />
+                <input type="text" class="form-control" id="activityName" name="name" required
+                    value="{{workouts.name}}" />
                 <div id="activityHelp" class="form-text">
                     Short descriptive names work best
                 </div>
             </div>
             <div class="mb-3">
-                <label for="activityType" class="form-label">Activity Type</label>
-                <input class="form-control" list="dataListOptions" id="activityType" placeholder="Type to search..."
-                    name="type" required value="{{type}}" />
-                <datalist id="dataListOptions">
-                    <option value="Running"></option>
-                    <option value="Swimming"></option>
-                    <option value="Lifting"></option>
-                    <option value="Cycling"></option>
-                    <option value="Something else"></option>
-                </datalist>
-                <div id="activityTypeHelp" class="form-text">
-                    You can add your own activity types!
-                </div>
+                <label for="activityDetails" class="form-label">Activity Details</label>
+                <input type="text" class="form-control" id="activityDetails" name="details" required
+                    value="{{workouts.details}}" />
             </div>
-
             <div class="row">
                 <div class="col">
                     <label for="date" class="form-label">Date</label>

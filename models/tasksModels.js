@@ -240,6 +240,8 @@ class Tasks {
 		});
 	}
 
+	// Takes in workout details as paramaters, calculates the
+	// start and ending dates of that week, then saves to DB.
 	addTask(name, details, date, username) {
 		var week = vali.getStartAndEnd(date);
 		var task = {
@@ -262,15 +264,50 @@ class Tasks {
 		});
 	}
 
-	// addTask(name, type, date, username) {
-	// 	var entry = {
-	// 		name: name,
-	// 		type: type,
-	// 		date: new Date(date).toISOString().substring(0, 10),
-	// 		username: username,
-	// 		completed: false,
-	// 	};
-	// 	console.log("Entry created", entry);
+    // Takes parameter in which is ID, searches DB for record with that ID
+    // returns it.
+	getTaskByID(ID) {
+		return new Promise((resolve, reject) => {
+			this.db.find({ _id: ID }, {}, function (err, doc) {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(doc);
+					console.log("Document got", doc);
+				}
+			});
+		});
+	}
+
+    // Takes in paramaters. ID is used to search for the record
+    // Paramaters are used to update the record.
+    // Dot notation used for the fields in the sub-document.
+    // Object notation will result in sub-document fields getting deleted if not mentioned in the 
+    // update query.
+	updateTask(name, details, date, ID) {
+		return new Promise((resolve, reject) => {
+			this.db.update(
+				{ _id: ID },
+				{
+					$set: {
+                        date: new Date(date).toISOString().substring(0, 10),
+						"workouts.name": name,
+						"workouts.details": details,
+					},
+				},
+				{},
+				function (err, doc) {
+					if (err) {
+						reject(err);
+						console.log("Document not updated", err);
+					} else {
+						resolve(doc);
+						console.log("Document updated: ", doc);
+					}
+				}
+			);
+		});
+	}
 
 	// getTaskByUsername(usernameIn) {
 	// 	return new Promise((resolve, reject) => {
@@ -317,44 +354,6 @@ class Tasks {
 	// 				console.log("Document removed from db");
 	// 			}
 	// 		});
-	// 	});
-	// }
-
-	// getTaskByID(ID) {
-	// 	return new Promise((resolve, reject) => {
-	// 		this.db.find({ _id: ID }, {}, function (err, doc) {
-	// 			if (err) {
-	// 				reject(err);
-	// 			} else {
-	// 				resolve(doc);
-	// 				console.log("Document got", doc);
-	// 			}
-	// 		});
-	// 	});
-	// }
-
-	// updateTask(name, type, date, ID) {
-	// 	return new Promise((resolve, reject) => {
-	// 		this.db.update(
-	// 			{ _id: ID },
-	// 			{
-	// 				$set: {
-	// 					name: name,
-	// 					type: type,
-	// 					date: new Date(date).toLocaleDateString("en-gb"),
-	// 				},
-	// 			},
-	// 			// {},
-	// 			function (err, doc) {
-	// 				if (err) {
-	// 					reject(err);
-	// 					console.log("Document not updated", err);
-	// 				} else {
-	// 					resolve(doc);
-	// 					console.log("Document updated: ", doc);
-	// 				}
-	// 			}
-	// 		);
 	// 	});
 	// }
 

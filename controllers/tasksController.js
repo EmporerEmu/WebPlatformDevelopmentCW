@@ -2,7 +2,6 @@
 const { response } = require("express");
 const tasks = require("../models/tasksModels");
 const Week = require("../models/weekModel");
-const Weeks = require("../models/weekModel");
 
 const db = new tasks();
 db.init();
@@ -106,7 +105,7 @@ exports.editTask = function (req, res) {
 
 // post
 exports.postEditTask = function (req, res) {
-	db.updateTask(req.body.name, req.body.type, req.body.date, req.params._id);
+	db.updateTask(req.body.name, req.body.details, req.body.date, req.params._id);
 	res.redirect("/activities-planner");
 };
 
