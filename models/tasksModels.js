@@ -309,7 +309,8 @@ class Tasks {
 		});
 	}
 
-    // Takes in
+	// Takes in ID as a paramater
+    // Updates record where record _id == ID
 	completeTask(ID) {
 		return new Promise((resolve, reject) => {
 			this.db.update(
@@ -329,6 +330,21 @@ class Tasks {
 					}
 				}
 			);
+		});
+	}
+
+    // Takes in ID as a parameter
+    // Deletes record where record _id == ID
+	deleteTask(ID) {
+		return new Promise((resolve, reject) => {
+			this.db.remove({ _id: ID }, {}, function (err, docRem) {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(docRem);
+					console.log("Document removed from db");
+				}
+			});
 		});
 	}
 
@@ -362,19 +378,6 @@ class Tasks {
 	// 			} else {
 	// 				resolve(tasks);
 	// 				console.log("getAllTasks() returns: ", tasks);
-	// 			}
-	// 		});
-	// 	});
-	// }
-
-	// deleteTask(ID) {
-	// 	return new Promise((resolve, reject) => {
-	// 		this.db.remove({ _id: ID }, {}, function (err, docRem) {
-	// 			if (err) {
-	// 				reject(err);
-	// 			} else {
-	// 				resolve(docRem);
-	// 				console.log("Document removed from db");
 	// 			}
 	// 		});
 	// 	});
