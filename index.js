@@ -41,15 +41,15 @@ auth.init(app);
 
 // Visualise routes of app
 // Dev only, will remove package
-var pathfinderUI = require("pathfinder-ui");
-app.use(
-	"/pathfinder",
-	function (req, res, next) {
-		pathfinderUI(app);
-		next();
-	},
-	pathfinderUI.router
-);
+// var pathfinderUI = require("pathfinder-ui");
+// app.use(
+// 	"/pathfinder",
+// 	function (req, res, next) {
+// 		pathfinderUI(app);
+// 		next();
+// 	},
+// 	pathfinderUI.router
+// );
 
 // Mapping router to all requests starting from the root
 app.use("/", router);
