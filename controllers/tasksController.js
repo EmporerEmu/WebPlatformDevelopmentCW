@@ -1,14 +1,9 @@
 // Imports
 const { response } = require("express");
 const tasks = require("../models/tasksModels");
-const Week = require("../models/weekModel");
 
 const db = new tasks();
 db.init();
-
-const week = new Week();
-week.init();
-week.getAllWeeks();
 
 const validations = require("../public/js/validations");
 const vali = new validations();
