@@ -172,7 +172,7 @@ class Tasks {
 			weekEnd: new Date("9 May 2021 12:00 UTC")
 				.toISOString()
 				.substring(0, 10),
-			date: new Date("2 May 2021 12:00 UTC")
+			date: new Date("4 May 2021 12:00 UTC")
 				.toISOString()
 				.substring(0, 10),
 			username: "ann@gmail.com",
@@ -264,8 +264,8 @@ class Tasks {
 		});
 	}
 
-    // Takes parameter in which is ID, searches DB for record with that ID
-    // returns it.
+	// Takes parameter in which is ID, searches DB for record with that ID
+	// returns it.
 	getTaskByID(ID) {
 		return new Promise((resolve, reject) => {
 			this.db.find({ _id: ID }, {}, function (err, doc) {
@@ -279,18 +279,18 @@ class Tasks {
 		});
 	}
 
-    // Takes in paramaters. ID is used to search for the record
-    // Paramaters are used to update the record.
-    // Dot notation used for the fields in the sub-document.
-    // Object notation will result in sub-document fields getting deleted if not mentioned in the 
-    // update query.
+	// Takes in paramaters. ID is used to search for the record
+	// Paramaters are used to update the record.
+	// Dot notation used for the fields in the sub-document.
+	// Object notation will result in sub-document fields getting deleted if not mentioned in the
+	// update query.
 	updateTask(name, details, date, ID) {
 		return new Promise((resolve, reject) => {
 			this.db.update(
 				{ _id: ID },
 				{
 					$set: {
-                        date: new Date(date).toISOString().substring(0, 10),
+						date: new Date(date).toISOString().substring(0, 10),
 						"workouts.name": name,
 						"workouts.details": details,
 					},
@@ -300,6 +300,29 @@ class Tasks {
 					if (err) {
 						reject(err);
 						console.log("Document not updated", err);
+					} else {
+						resolve(doc);
+						console.log("Document updated: ", doc);
+					}
+				}
+			);
+		});
+	}
+
+    // Takes in
+	completeTask(ID) {
+		return new Promise((resolve, reject) => {
+			this.db.update(
+				{ _id: ID },
+				{
+					$set: {
+						"workouts.completed": true,
+					},
+				},
+				// {},
+				function (err, doc) {
+					if (err) {
+						reject(err);
 					} else {
 						resolve(doc);
 						console.log("Document updated: ", doc);
@@ -354,28 +377,6 @@ class Tasks {
 	// 				console.log("Document removed from db");
 	// 			}
 	// 		});
-	// 	});
-	// }
-
-	// completeTask(ID) {
-	// 	return new Promise((resolve, reject) => {
-	// 		this.db.update(
-	// 			{ _id: ID },
-	// 			{
-	// 				$set: {
-	// 					completed: true,
-	// 				},
-	// 			},
-	// 			// {},
-	// 			function (err, doc) {
-	// 				if (err) {
-	// 					reject(err);
-	// 				} else {
-	// 					resolve(doc);
-	// 					console.log("Document updated: ", doc);
-	// 				}
-	// 			}
-	// 		);
 	// 	});
 	// }
 } // end of class
