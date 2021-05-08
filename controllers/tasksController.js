@@ -29,7 +29,8 @@ exports.postAddActivity = function (req, res) {
 		response.status(400).send("Activity must have a name.");
 		return;
 	}
-	db.addTask(req.body.name, req.body.type, req.body.date, req.user.user);
+	db.addTask(req.body.name, req.body.details, req.body.date, req.user.user);
+	week.addTask(req.body.name, req.body.details, req.body.date, req.user.user);
 	// db.getAllTasks();
 	res.redirect("/activities-planner");
 };
@@ -45,7 +46,8 @@ exports.shareActivity = function (req, res) {
 // viewPlanner
 exports.viewPlanner = function (req, res) {
 	var username = req.user.user;
-	db.getTaskByUsername(username)
+	var currentWeek = vali.getDays();
+	db.currentWeekTasks(currentWeek, username)
 		.then((list) => {
 			res.render("activities/activities-planner", {
 				title: "Fitness - Schedule",
@@ -53,7 +55,6 @@ exports.viewPlanner = function (req, res) {
 				user: req.user,
 			});
 			console.log("promise resolved");
-			vali.getDays();
 		})
 		.catch((err) => {
 			console.log("Promise rejected", err);
@@ -63,8 +64,8 @@ exports.viewPlanner = function (req, res) {
 exports.viewPlanner2 = function (req, res) {
 	var currentWeek = vali.getDays();
 	console.log("Current week: " + currentWeek);
-	// week.currentWeekTasks(currentWeek);
-	week.currentWeekTasks(currentWeek)
+	var username = req.user.user;
+	week.currentWeekTasks(currentWeek, username)
 		.then((list) => {
 			res.render("activities/activities-planner2", {
 				title: "Fitness - Schedule",

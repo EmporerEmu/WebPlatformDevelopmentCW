@@ -7,19 +7,29 @@
 
 <body>
     <div class="container py-3">
-        {{shared/nav}}
+        {{>shared/nav}}
         <h1>Planner 2</h1>
-        {{#tasks}}
-        <p>{{weekStart}}</p>
-        <p>{{weekEnd}}</p>
-        <p>{{username}}</p>
-        <p>{{workouts.name}}</p>
-        <p>{{workouts.details}}</p>
-        <p>{{workouts.date}}</p>
-        <p>{{workouts.completed}}</p>
+        <table class="table table-striped table-light table-hover table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Completed</th>
 
-
-        {{/tasks}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#tasks}}
+                <tr>
+                    <td>{{ workouts.name }}</td>
+                    <td>{{ workouts.details }}</td>
+                    <td>{{ date }}</td>
+                    <td>{{ workouts.completed }}</td>
+                </tr>
+                {{/tasks}}
+            </tbody>
+        </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"

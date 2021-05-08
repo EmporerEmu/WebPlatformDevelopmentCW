@@ -11,22 +11,15 @@
         {{>shared/nav}}
         <!-- Tasks table -->
         <div class="row">
-            Week {{week}}
         </div>
         <div class="row">
-            <!-- <div class="col-md-2">
-                <p>{{user}}</p>
-                <p>Total Exercises {{total}}</p>
-                <p>Exercises planned this week</p>
-                <button class="btn btn-outline-dark">Add exercise</button>
-            </div> -->
             <div class="col-md-10">
                 <table class="table table-striped table-light table-hover table-borderless">
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
-                            <th scope="col">Type</th>
-                            <th scope="col" data-type="date">Date</th>
+                            <th scope="col">details</th>
+                            <th scope="col">Date</th>
                             <th scope="col">Completion Status</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Complete</th>
@@ -35,25 +28,25 @@
                     <tbody>
                         {{#tasks}}
                         <tr>
-                            <td>{{ name }}</td>
-                            <td>{{ type }}</td>
+                            <td>{{ workouts.name }}</td>
+                            <td>{{ workouts.details }}</td>
                             <td>{{ date }}</td>
                             <td>
-                                {{^completed}}<input type="checkbox" id="completionCheckFalse" value={{completed}}
-                                    disabled>{{/completed}}
-                                {{#completed}}<input type="checkbox" id="completionCheckTrue" value={{completed}}
-                                    checked disabled>{{/completed}}
+                                {{^workouts.completed}}<input type="checkbox" id="completionCheckFalse"
+                                    value={{workouts.completed}} disabled>{{/workouts.completed}}
+                                {{#workouts.completed}}<input type="checkbox" id="completionCheckTrue"
+                                    value={{workouts.completed}} checked disabled>{{/workouts.completed}}
                             </td>
                             <td><a href="/activities-edit/{{ _id }}" class="btn btn-outline-warning">Edit</a></td>
                             <td>
-                                {{^completed}}
+                                {{^workouts.completed}}
                                 <form action="" method="POST">
                                     <button type="submit" name="completeButton" value="{{ _id }}"
                                         class="btn btn-outline-success">
                                         Complete
                                     </button>
                                 </form>
-                                {{/completed}}
+                                {{/workouts.completed}}
                             </td>
                         </tr>
                         {{/tasks}}
