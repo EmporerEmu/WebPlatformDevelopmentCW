@@ -19,33 +19,15 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="activityType" class="form-label">Activity Type</label>
-                <input class="form-control" list="dataListOptions" id="activityType" placeholder="Type to search..."
-                    name="type" required />
-                <datalist id="dataListOptions">
-                    <option value="Running"></option>
-                    <option value="Swimming"></option>
-                    <option value="Lifting"></option>
-                    <option value="Cycling"></option>
-                    <option value="Something else"></option>
-                </datalist>
-                <div id="activityTypeHelp" class="form-text">
-                    You can add your own activity types!
-                </div>
+                <label for="activityDetails" class="form-label">Activity Type</label>
+                <input type="text" class="form-control" id="activityDetails" name="details" required>
+
             </div>
 
             <div class="row">
                 <div class="col">
                     <label for="date" class="form-label">Date</label>
                     <input class="form-control" type="date" id="date" name="date" required />
-                </div>
-                <div class="col">
-                    <label for="startTime" class="form-label">Start Time</label>
-                    <input class="form-control" type="time" id="startTime" name="startTime" required />
-                </div>
-                <div class="col">
-                    <label for="endTime" class="form-label">End Time</label>
-                    <input class="form-control" type="time" id="endTime" name="endTime" required />
                 </div>
             </div>
             <div class="mb-3"></div>
