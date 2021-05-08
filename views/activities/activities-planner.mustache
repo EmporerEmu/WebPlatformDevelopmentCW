@@ -21,7 +21,7 @@
                 <a href="#">Next week</a>
             </div>
             <div class="col">
-                <a href="/activities-missed">Missed goals</a>
+                <a href="/activities/missed">Missed goals</a>
             </div>
         </div>
         <div class="row">
@@ -49,7 +49,7 @@
                                 {{#workouts.completed}}<input type="checkbox" id="completionCheckTrue"
                                     value={{workouts.completed}} checked disabled>{{/workouts.completed}}
                             </td>
-                            <td><a href="/activities-edit/{{ _id }}" class="btn btn-outline-warning">Edit</a></td>
+                            <td><a href="/activities/edit/{{ _id }}" class="btn btn-outline-warning">Edit</a></td>
                             <td>
                                 {{^workouts.completed}}
                                 <form action="" method="POST">

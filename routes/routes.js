@@ -13,40 +13,40 @@ const router = express.Router();
 router.get("/", homeController.landingPage);
 
 // Tasks
-router.get("/activities-add", ensureLoggedIn("/account-login"), tasksController.addActivity);
+router.get("/activities/add", ensureLoggedIn("/account-login"), tasksController.addActivity);
 
-router.post("/activities-add", ensureLoggedIn("/account-login"), tasksController.postAddActivity);
+router.post("/activities/add", ensureLoggedIn("/account-login"), tasksController.postAddActivity);
 
-router.get("/activities-planner",  tasksController.viewPlanner);
+router.get("/activities/planner",  tasksController.viewPlanner);
 
-router.get("/activities-delete/:_id", tasksController.deleteTask);
+router.get("/activities/delete/:_id", tasksController.deleteTask);
 
-router.post("/activities-delete/:_id", tasksController.postDeleteTask);
+router.post("/activities/delete/:_id", tasksController.postDeleteTask);
 
-router.get("/activities-edit/:_id", tasksController.editTask);
+router.get("/activities/edit/:_id", tasksController.editTask);
 
-router.post("/activities-edit/:_id", tasksController.postEditTask);
+router.post("/activities/edit/:_id", tasksController.postEditTask);
 
-router.get("/activities-share", tasksController.shareActivity);
+router.get("/activities/share", tasksController.shareActivity);
 
-router.post("/activities-planner", tasksController.completeTask);
+router.post("/activities/planner", tasksController.completeTask);
 
-router.get("/activities-missed", tasksController.missedActivities);
+router.get("/activities/missed", tasksController.missedActivities);
 
 // Account
-router.get("/account-login", accountController.login);
+router.get("/account/login", accountController.login);
 
 router.post(
-	"/account-login",
-	auth.authorize("/account-login"),
+	"/account/login",
+	auth.authorize("/account/login"),
 	accountController.postLogin
 );
 
-router.get("/account-signup", accountController.signUp);
+router.get("/account/signup", accountController.signUp);
 
-router.post("/account-signup", accountController.postSignUp);
+router.post("/account/signup", accountController.postSignUp);
 
-router.get("/account-logout", accountController.logout);
+router.get("/account/logout", accountController.logout);
 
 // Routes | status codes
 

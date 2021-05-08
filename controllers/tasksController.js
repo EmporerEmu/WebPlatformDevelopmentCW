@@ -26,7 +26,7 @@ exports.postAddActivity = function (req, res) {
 	db.addTask(req.body.name, req.body.details, req.body.date, req.user.user);
 	week.addTask(req.body.name, req.body.details, req.body.date, req.user.user);
 	// db.getAllTasks();
-	res.redirect("/activities-planner");
+	res.redirect("/activities/planner");
 };
 
 // /activities-share
@@ -65,7 +65,7 @@ exports.deleteTask = function (req, res) {
 // activities-delete [POST]
 exports.postDeleteTask = function (req, res) {
 	db.deleteTask(req.params._id);
-	res.redirect("/activities-planner");
+	res.redirect("/activities/planner");
 };
 
 exports.editTask = function (req, res) {
@@ -91,13 +91,13 @@ exports.postEditTask = function (req, res) {
 		req.body.date,
 		req.params._id
 	);
-	res.redirect("/activities-planner");
+	res.redirect("/activities/planner");
 };
 
 // post complete
 exports.completeTask = function (req, res) {
 	db.completeTask(req.body.completeButton);
-	res.redirect("/activities-planner");
+	res.redirect("/activities/planner");
 };
 
 exports.missedActivities = function (req, res) {
