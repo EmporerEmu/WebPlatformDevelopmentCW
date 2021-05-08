@@ -47,23 +47,8 @@ exports.viewPlanner = function (req, res) {
 				title: "Fitness - Schedule",
 				tasks: list,
 				user: req.user,
-			});
-			console.log("promise resolved");
-		})
-		.catch((err) => {
-			console.log("Promise rejected", err);
-		});
-};
-
-exports.viewPlanner2 = function (req, res) {
-	var currentWeek = vali.getDays();
-	console.log("Current week: " + currentWeek);
-	var username = req.user.user;
-	week.currentWeekTasks(currentWeek, username)
-		.then((list) => {
-			res.render("activities/activities-planner2", {
-				title: "Fitness - Schedule",
-				tasks: list,
+				weekStart: currentWeek[0],
+				weekEnd: currentWeek[6],
 			});
 			console.log("promise resolved");
 		})
@@ -100,7 +85,12 @@ exports.editTask = function (req, res) {
 
 // post
 exports.postEditTask = function (req, res) {
-	db.updateTask(req.body.name, req.body.details, req.body.date, req.params._id);
+	db.updateTask(
+		req.body.name,
+		req.body.details,
+		req.body.date,
+		req.params._id
+	);
 	res.redirect("/activities-planner");
 };
 
@@ -108,4 +98,17 @@ exports.postEditTask = function (req, res) {
 exports.completeTask = function (req, res) {
 	db.completeTask(req.body.completeButton);
 	res.redirect("/activities-planner");
+};
+
+exports.missedActivities = function (req, res) {
+	var username = req.user.user;
+	db.getAllUncompletedTasks(username)
+		.then((tasks) => {
+			res.render("activities/activities-missed", {
+				tasks: tasks,
+			});
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 };

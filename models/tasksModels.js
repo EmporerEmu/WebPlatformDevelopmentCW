@@ -310,7 +310,7 @@ class Tasks {
 	}
 
 	// Takes in ID as a paramater
-    // Updates record where record _id == ID
+	// Updates record where record _id == ID
 	completeTask(ID) {
 		return new Promise((resolve, reject) => {
 			this.db.update(
@@ -333,8 +333,8 @@ class Tasks {
 		});
 	}
 
-    // Takes in ID as a parameter
-    // Deletes record where record _id == ID
+	// Takes in ID as a parameter
+	// Deletes record where record _id == ID
 	deleteTask(ID) {
 		return new Promise((resolve, reject) => {
 			this.db.remove({ _id: ID }, {}, function (err, docRem) {
@@ -348,6 +348,21 @@ class Tasks {
 		});
 	}
 
+	// Takes in username as a parameter
+	// Gets all records where completed = false.
+	getAllUncompletedTasks(usernameIn) {
+		return new Promise((resolve, reject) => {
+			this.db.find({ username: usernameIn, "workouts.completed": false }, {}, function (err, docs) {
+				if (err) {
+					reject(err);
+					console.log("Cannot get all uncompleted tasks", err);
+				} else {
+					resolve(docs);
+					console.log("All uncompleted tasks:", docs);
+				}
+			});
+		});
+	}
 	// getTaskByUsername(usernameIn) {
 	// 	return new Promise((resolve, reject) => {
 	// 		this.db.find({ username: usernameIn }, {}, function (err, doc) {

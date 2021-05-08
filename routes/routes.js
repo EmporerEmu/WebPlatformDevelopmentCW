@@ -31,7 +31,7 @@ router.get("/activities-share", tasksController.shareActivity);
 
 router.post("/activities-planner", tasksController.completeTask);
 
-router.get("/activities-planner2", tasksController.viewPlanner2);
+router.get("/activities-missed", tasksController.missedActivities);
 
 // Account
 router.get("/account-login", accountController.login);
