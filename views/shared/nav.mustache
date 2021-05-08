@@ -7,22 +7,22 @@
 
         {{#user}}
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/activities-planner" class="nav-link px-2 link-dark">TODOS</a></li>
+            <li><a href="/activities/planner" class="nav-link px-2 link-dark">TODOS</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">Your Fitness</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">Account</a></li>
-            <li><a href="/activities-add" class="nav-link px-2 link-dark">Add</a></li>
-            <li><a href="/activities-share" class="nav-link px-2 link-dark">Share</a></li>
+            <li><a href="/activities/add" class="nav-link px-2 link-dark">Add</a></li>
+            <li><a href="/activities/share" class="nav-link px-2 link-dark">Share</a></li>
         </ul>
         {{/user}}
 
         <div class="col-md-3 text-end">
             {{^user}}
-            <a href="/account-login" class="btn btn-outline-secondary btn-sm me-3 py-2">Login</a>
-            <a href="/account-signup" class="btn btn-secondary btn-sm me-3 py-2">Sign Up</a>
+            <a href="/account/login" class="btn btn-outline-secondary btn-sm me-3 py-2">Login</a>
+            <a href="/account/signup" class="btn btn-secondary btn-sm me-3 py-2">Sign Up</a>
             {{/user}}
             {{#user}}
             <a href="#" class="me-3 py-2 text-dark text-decoration-none">{{user}}</a>
-            <a href="/account-logout" class="me-3 py-2 text-dark text-decoration-none">Logout</a>
+            <a href="/account/logout" class="me-3 py-2 text-dark text-decoration-none">Logout</a>
             {{/user}}
         </div>
     </nav>

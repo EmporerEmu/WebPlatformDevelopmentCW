@@ -37,7 +37,7 @@ exports.postSignUp = function (req, res) {
 			return;
 		}
 		User.create(user, password);
-		res.redirect("/account-login");
+		res.redirect("/account/login");
 	});
 };
 

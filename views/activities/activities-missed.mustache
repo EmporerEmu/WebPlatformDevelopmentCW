@@ -34,7 +34,7 @@
                                 {{#workouts.completed}}<input type="checkbox" id="completionCheckTrue"
                                     value={{workouts.completed}} checked disabled>{{/workouts.completed}}
                             </td>
-                            <td><a href="/activities-edit/{{ _id }}" class="btn btn-outline-warning">Edit</a></td>
+                            <td><a href="/activities/edit/{{ _id }}" class="btn btn-outline-warning">Edit</a></td>
                             <td>
                                 {{^workouts.completed}}
                                 <form action="" method="POST">
