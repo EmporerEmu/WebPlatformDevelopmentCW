@@ -363,6 +363,42 @@ class Tasks {
 			});
 		});
 	}
+
+    getTaskByWeek(date, usernameIn) {
+        var week = vali.getStartAndEnd(date);
+        return new Promise((resolve, reject) => {
+			this.db.findOne(
+				{
+					username: usernameIn,
+					$and: [
+						{
+							weekStart: {
+								$gte: new Date(week[0])
+									.toISOString()
+									.substring(0, 10),
+							},
+						},
+						{
+							weekEnd: {
+								$lte: new Date(week[6])
+									.toISOString()
+									.substring(0, 10),
+							},
+						},
+					],
+				},
+				function (err, tasks) {
+					if (err) {
+						reject(err);
+					} else {
+						vali.sortByDateDesc(tasks);
+						resolve(tasks);
+						console.log("currentWeekTasks returns: ", tasks);
+					}
+				}
+			);
+		});
+    }
 	// getTaskByUsername(usernameIn) {
 	// 	return new Promise((resolve, reject) => {
 	// 		this.db.find({ username: usernameIn }, {}, function (err, doc) {

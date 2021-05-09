@@ -13,11 +13,23 @@ const router = express.Router();
 router.get("/", homeController.landingPage);
 
 // Tasks
-router.get("/activities/add", ensureLoggedIn("/account/login"), tasksController.addActivity);
+router.get(
+	"/activities/add",
+	ensureLoggedIn("/account/login"),
+	tasksController.addActivity
+);
 
-router.post("/activities/add", ensureLoggedIn("/account/login"), tasksController.postAddActivity);
+router.post(
+	"/activities/add",
+	ensureLoggedIn("/account/login"),
+	tasksController.postAddActivity
+);
 
-router.get("/activities/planner", ensureLoggedIn("/account/login"), tasksController.viewPlanner);
+router.get(
+	"/activities/planner",
+	ensureLoggedIn("/account/login"),
+	tasksController.viewPlanner
+);
 
 router.get("/activities/delete/:_id", tasksController.deleteTask);
 
@@ -27,7 +39,9 @@ router.get("/activities/edit/:_id", tasksController.editTask);
 
 router.post("/activities/edit/:_id", tasksController.postEditTask);
 
-router.get("/activities/share", tasksController.shareActivity);
+router.get("/activities/share/:username", tasksController.shareActivity);
+
+router.get("/activities/share/:username/:first", tasksController.guestShare);
 
 router.post("/activities/planner", tasksController.completeTask);
 
