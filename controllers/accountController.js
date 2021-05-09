@@ -3,7 +3,7 @@ const User = require("../models/userModel");
 
 // /login
 exports.login = function (req, res) {
-	res.render("user/account-login", {
+	res.render("account/account-login", {
 		title: "Fitness - Log in",
 	});
 };
@@ -16,7 +16,7 @@ exports.postLogin = function (req, res) {
 
 // /signUp
 exports.signUp = function (req, res) {
-	res.render("user/account-signup", {
+	res.render("account/account-signup", {
 		title: "Fitness - Sign Up",
 	});
 };

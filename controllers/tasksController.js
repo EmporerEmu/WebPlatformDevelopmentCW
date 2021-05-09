@@ -24,8 +24,6 @@ exports.postAddActivity = function (req, res) {
 		return;
 	}
 	db.addTask(req.body.name, req.body.details, req.body.date, req.user.user);
-	week.addTask(req.body.name, req.body.details, req.body.date, req.user.user);
-	// db.getAllTasks();
 	res.redirect("/activities/planner");
 };
 

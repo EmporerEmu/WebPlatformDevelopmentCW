@@ -13,11 +13,11 @@ const router = express.Router();
 router.get("/", homeController.landingPage);
 
 // Tasks
-router.get("/activities/add", ensureLoggedIn("/account-login"), tasksController.addActivity);
+router.get("/activities/add", ensureLoggedIn("/account/login"), tasksController.addActivity);
 
-router.post("/activities/add", ensureLoggedIn("/account-login"), tasksController.postAddActivity);
+router.post("/activities/add", ensureLoggedIn("/account/login"), tasksController.postAddActivity);
 
-router.get("/activities/planner",  tasksController.viewPlanner);
+router.get("/activities/planner", ensureLoggedIn("/account/login"), tasksController.viewPlanner);
 
 router.get("/activities/delete/:_id", tasksController.deleteTask);
 
