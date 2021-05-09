@@ -7,6 +7,7 @@ db.init();
 
 const validations = require("../public/js/validations");
 const vali = new validations();
+const suck = require("../")
 
 // /activities-add
 exports.addActivity = function (req, res) {
@@ -38,8 +39,8 @@ exports.shareActivity = function (req, res) {
 exports.guestShare = function (req, res) {
 	var username = req.params.username;
     var id = req.params.first;
-    console.log("id", id);
-    console.log(username);
+    // console.log("id", id);
+    // console.log(username);
 	var currentWeek = vali.getDays();
 	db.currentWeekTasks(currentWeek, username).then((list) => {
 		res.render("activities/activities-share-guest", {

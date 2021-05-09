@@ -4,7 +4,6 @@ $(document).ready(function () {
 	var div = document.getElementById("shareDisplay");
     var date = new Date().toISOString().substring(0, 10);
 	url = url.concat("/",date);
-    console.log(url);
     h3.innerHTML = url;
 
 	div.append(h3);
