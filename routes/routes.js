@@ -31,21 +31,57 @@ router.get(
 	tasksController.viewPlanner
 );
 
-router.get("/activities/delete/:_id", tasksController.deleteTask);
+router.get(
+	"/activities/delete/:_id",
+	ensureLoggedIn("/account/login"),
+	tasksController.deleteTask
+);
 
-router.post("/activities/delete/:_id", tasksController.postDeleteTask);
+router.post(
+	"/activities/delete/:_id",
+	ensureLoggedIn("/account/login"),
+	tasksController.postDeleteTask
+);
 
-router.get("/activities/edit/:_id", tasksController.editTask);
+router.get(
+	"/activities/edit/:_id",
+	ensureLoggedIn("/account/login"),
+	tasksController.editTask
+);
 
-router.post("/activities/edit/:_id", tasksController.postEditTask);
+router.post(
+	"/activities/edit/:_id",
+	ensureLoggedIn("/account/login"),
+	tasksController.postEditTask
+);
 
-router.get("/activities/share/:username", tasksController.shareActivity);
+router.get(
+	"/activities/share/:username",
+	ensureLoggedIn("/account/login"),
+	tasksController.shareActivity
+);
 
-router.get("/activities/share/:username/:first", tasksController.guestShare);
+router.get(
+	"/activities/share/:username/:first",
+	ensureLoggedIn("/account/login"),
+	tasksController.guestShare
+);
 
-router.post("/activities/planner", tasksController.completeTask);
+router.post(
+	"/activities/planner",
+	ensureLoggedIn("/account/login"),
+	tasksController.completeTask
+);
 
-router.get("/activities/missed", tasksController.missedActivities);
+router.get(
+	"/activities/missed",
+	ensureLoggedIn("/account/login"),
+	tasksController.missedActivities
+);
+
+router.get("/activities/previous/:previous", tasksController.previousWeek);
+
+router.get("/activities/next/:next", tasksController.nextWeek);
 
 // Account
 router.get("/account/login", accountController.login);

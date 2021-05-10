@@ -7,7 +7,6 @@ db.init();
 
 const validations = require("../public/js/validations");
 const vali = new validations();
-const suck = require("../")
 
 // /activities-add
 exports.addActivity = function (req, res) {
@@ -19,9 +18,9 @@ exports.addActivity = function (req, res) {
 
 // POST: /activities-add
 exports.postAddActivity = function (req, res) {
-	console.log("Procesing...");
+	// console.log("Procesing...");
 	if (!req.body.name) {
-		response.status(400).send("Activity must have a name.");
+		res.status(400).send("Activity must have a name.");
 		return;
 	}
 	db.addTask(req.body.name, req.body.details, req.body.date, req.user.user);
@@ -38,14 +37,14 @@ exports.shareActivity = function (req, res) {
 
 exports.guestShare = function (req, res) {
 	var username = req.params.username;
-    var id = req.params.first;
-    // console.log("id", id);
-    // console.log(username);
+	var id = req.params.first;
+	// console.log("id", id);
+	// console.log(username);
 	var currentWeek = vali.getDays();
 	db.currentWeekTasks(currentWeek, username).then((list) => {
 		res.render("activities/activities-share-guest", {
-            tasks: list
-        });
+			tasks: list,
+		});
 	});
 };
 
@@ -53,6 +52,10 @@ exports.guestShare = function (req, res) {
 exports.viewPlanner = function (req, res) {
 	var username = req.user.user;
 	var currentWeek = vali.getDays();
+	var previousWeek = vali.getPreviousWeekStart();
+	console.log("previous week:", previousWeek);
+	var nextWeek = vali.getNextWeekStart();
+	console.log("next week:", nextWeek);
 	db.currentWeekTasks(currentWeek, username)
 		.then((list) => {
 			res.render("activities/activities-planner", {
@@ -62,11 +65,13 @@ exports.viewPlanner = function (req, res) {
 				weekStart: currentWeek[0],
 				weekEnd: currentWeek[6],
 				first: currentWeek[0],
+				next: nextWeek,
+				previous: previousWeek,
 			});
-			console.log("promise resolved");
+			// console.log("promise resolved");
 		})
 		.catch((err) => {
-			console.log("Promise rejected", err);
+			// console.log("Promise rejected", err);
 		});
 };
 
@@ -92,7 +97,7 @@ exports.editTask = function (req, res) {
 			});
 		})
 		.catch((err) => {
-			console.log("Error handling user task", err);
+			// console.log("Error handling user task", err);
 		});
 };
 
@@ -122,6 +127,26 @@ exports.missedActivities = function (req, res) {
 			});
 		})
 		.catch((err) => {
-			console.log(err);
+			// console.log(err);
 		});
+};
+
+exports.previousWeek = function (req, res) {
+	var username = req.user.user;
+	var date = req.params.previous;
+	db.getTaskByWeek(date, username).then((list) => {
+		res.render("activities/activities-previous", {
+            tasks: list
+        })
+	});
+};
+
+exports.nextWeek = function (req, res) {
+	var username = req.user.user;
+	var date = req.params.next;
+	db.getTaskByWeek(date, username).then((list) => {
+		res.render("activities/activities-next", {
+            tasks: list
+        })
+	});
 };

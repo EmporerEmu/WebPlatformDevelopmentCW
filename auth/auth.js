@@ -10,11 +10,11 @@ exports.init = function (app) {
 			userModel.lookup(username, function (err, user) {
 				console.log("lookup user", username);
 				if (err) {
-					console.log("error looking up user", err);
+					// console.log("error looking up user", err);
 					return cb(err);
 				}
 				if (!user) {
-					console.log("user ", username, " not found");
+					// console.log("user ", username, " not found");
 					return cb(null, false);
 				}
 				//compare provided password with that in the database;

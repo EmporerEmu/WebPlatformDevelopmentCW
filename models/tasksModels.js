@@ -12,87 +12,6 @@ class Tasks {
 			this.db = new nedb();
 		}
 	}
-	#region;
-	// Seeding tasks into the database
-	// init() {
-	// 	this.db.insert({
-	// 		name: "I don't understand",
-	// 		type: "Running",
-	// 		date: new Date("31 May 2021 12:00 UTC")
-	// 			.toISOString()
-	// 			.substring(0, 10),
-	// 		completed: true,
-	// 		username: "ann@gmail.com",
-	// 	});
-	// 	this.db.insert({
-	// 		name: "Like, really don't understand",
-	// 		type: "Lifting",
-	// 		date: new Date("27 May 2021 12:00 UTC")
-	// 			.toISOString()
-	// 			.substring(0, 10),
-	// 		completed: true,
-	// 		username: "ann@gmail.com",
-	// 	});
-	// 	this.db.insert({
-	// 		name: "?",
-	// 		type: "Swimming",
-	// 		date: new Date("1 May 2021 12:00 UTC")
-	// 			.toISOString()
-	// 			.substring(0, 10),
-	// 		completed: true,
-	// 		username: "ann@gmail.com",
-	// 	});
-	// 	this.db.insert({
-	// 		name: "Morning Jog",
-	// 		type: "Running",
-	// 		date: new Date("2 May 2021 12:00 UTC")
-	// 			.toISOString()
-	// 			.substring(0, 10),
-	// 		completed: true,
-	// 		username: "ann@gmail.com",
-	// 	});
-	// 	this.db.insert({
-	// 		name: "Morning Cardio",
-	// 		type: "Swimming",
-	// 		date: new Date("3 May 2021 12:00 UTC")
-	// 			.toISOString()
-	// 			.substring(0, 10),
-	// 		completed: true,
-	// 		username: "ann@gmail.com",
-	// 	});
-	// 	console.log("DB Task inserted");
-	// 	this.db.insert({
-	// 		name: "Flying session",
-	// 		type: "Something else",
-	// 		date: new Date("4 May 2021 12:00 UTC")
-	// 			.toISOString()
-	// 			.substring(0, 10),
-	// 		completed: false,
-	// 		username: "ann@gmail.com",
-	// 	});
-	// 	console.log("DB Task inserted");
-	// 	this.db.insert({
-	// 		name: "Leg Day",
-	// 		type: "Lifting",
-	// 		date: new Date("5 May 2021 12:00 UTC")
-	// 			.toISOString()
-	// 			.substring(0, 10),
-	// 		completed: false,
-	// 		username: "ann@gmail.com",
-	// 	});
-	// 	console.log("DB Task inserted");
-	// 	this.db.insert({
-	// 		name: "New Year New Me",
-	// 		type: "Something else",
-	// 		date: new Date("6 May 2021 12:00 UTC")
-	// 			.toISOString()
-	// 			.substring(0, 10),
-	// 		completed: false,
-	// 		username: "ann@gmail.com",
-	// 	});
-	// 	console.log("DB Task inserted");
-	// }
-	#endregion;
 
 	// Seeding tasks into the database
 	init() {
@@ -113,7 +32,6 @@ class Tasks {
 				completed: true,
 			},
 		});
-		console.log("Week added");
 		this.db.insert({
 			weekStart: new Date("3 May 2021 12:00 UTC")
 				.toISOString()
@@ -233,7 +151,7 @@ class Tasks {
 					} else {
 						vali.sortByDateDesc(tasks);
 						resolve(tasks);
-						console.log("currentWeekTasks returns: ", tasks);
+						// console.log("currentWeekTasks returns: ", tasks);
 					}
 				}
 			);
@@ -257,9 +175,9 @@ class Tasks {
 		};
 		this.db.insert(task, function (err, doc) {
 			if (err) {
-				console.log("Error inserting document", task);
+				// console.log("Error inserting document", task);
 			} else {
-				console.log("Document inserted into DB", doc);
+				// console.log("Document inserted into DB", doc); 
 			}
 		});
 	}
@@ -273,7 +191,7 @@ class Tasks {
 					reject(err);
 				} else {
 					resolve(doc);
-					console.log("Document got", doc);
+					// console.log("Document got", doc);
 				}
 			});
 		});
@@ -299,10 +217,10 @@ class Tasks {
 				function (err, doc) {
 					if (err) {
 						reject(err);
-						console.log("Document not updated", err);
+						// console.log("Document not updated", err);
 					} else {
 						resolve(doc);
-						console.log("Document updated: ", doc);
+						// console.log("Document updated: ", doc);
 					}
 				}
 			);
@@ -326,7 +244,7 @@ class Tasks {
 						reject(err);
 					} else {
 						resolve(doc);
-						console.log("Document updated: ", doc);
+						// console.log("Document updated: ", doc);
 					}
 				}
 			);
@@ -342,7 +260,7 @@ class Tasks {
 					reject(err);
 				} else {
 					resolve(docRem);
-					console.log("Document removed from db");
+					// console.log("Document removed from db");
 				}
 			});
 		});
@@ -355,10 +273,10 @@ class Tasks {
 			this.db.find({ username: usernameIn, "workouts.completed": false }, {}, function (err, docs) {
 				if (err) {
 					reject(err);
-					console.log("Cannot get all uncompleted tasks", err);
+					// console.log("Cannot get all uncompleted tasks", err);
 				} else {
 					resolve(docs);
-					console.log("All uncompleted tasks:", docs);
+					// console.log("All uncompleted tasks:", docs);
 				}
 			});
 		});
@@ -367,7 +285,7 @@ class Tasks {
     getTaskByWeek(date, usernameIn) {
         var week = vali.getStartAndEnd(date);
         return new Promise((resolve, reject) => {
-			this.db.findOne(
+			this.db.find(
 				{
 					username: usernameIn,
 					$and: [

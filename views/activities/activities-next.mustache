@@ -6,27 +6,9 @@
 </head>
 
 <body>
-    {{#user}}
     <div class="container py-3">
         {{>shared/nav}}
         <!-- Tasks table -->
-        <div class="row">
-            <div class="col">
-                <a href="/activities/previous/{{previous}}">Previous week</a>
-            </div>
-            <div class="col">
-                <h4 class="text-center">Activities for {{weekStart}} to {{weekEnd}}</h4>
-            </div>
-            <div class="col">
-                <a href="/activities/next/{{next}}">Next week</a>
-            </div>
-            <div class="col">
-                <a href="/activities/missed">Missed goals</a>
-            </div>
-            <div class="col">
-                <a href="/activities/share/{{ user.user }}">Share</a>
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-10">
                 <table class="table table-striped table-light table-hover table-borderless">
@@ -74,7 +56,6 @@
             </div>
         </div>
     </div>
-    {{/user}}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"

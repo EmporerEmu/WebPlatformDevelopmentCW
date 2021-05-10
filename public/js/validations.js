@@ -9,20 +9,30 @@ class Validations {
 			let day = new Date(curr.setDate(first)).toISOString().slice(0, 10);
 			week.push(day);
 		}
-        return week;
+		return week;
 	}
 
-    getStartAndEnd(currentDate) {
-        let curr = new Date(currentDate);
-        let week = [];
+	getStartAndEnd(currentDate) {
+		let curr = new Date(currentDate);
+		let week = [];
 
-        for (let i = 1; i <= 7; i++) {
-            let first = curr.getDate() - curr.getDay() + i;
-            let day = new Date(curr.setDate(first)).toISOString().slice(0, 10);
-            week.push(day);
-        }
-        console.log(week);
-        return week;
+		for (let i = 1; i <= 7; i++) {
+			let first = curr.getDate() - curr.getDay() + i;
+			let day = new Date(curr.setDate(first)).toISOString().slice(0, 10);
+			week.push(day);
+		}
+		console.log(week);
+		return week;
+	}
+
+	getPreviousWeekStart() {
+        let date = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+        return date;
+    }
+
+	getNextWeekStart() {
+        let date = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+        return date;
     }
 
 	sortByDateDesc(list) {

@@ -10,7 +10,7 @@ exports.login = function (req, res) {
 
 // post: login
 exports.postLogin = function (req, res) {
-	console.log("this is post login");
+	// console.log("this is post login");
 	res.redirect("/");
 };
 
@@ -25,7 +25,7 @@ exports.signUp = function (req, res) {
 exports.postSignUp = function (req, res) {
 	const user = req.body.emailIn;
 	const password = req.body.passwordIn;
-	console.log("register user", user, "password", password);
+	// console.log("register user", user, "password", password);
 	if (!user || !password) {
 		res.send(401, "no user or no password");
 		return;
@@ -33,7 +33,7 @@ exports.postSignUp = function (req, res) {
 	User.lookup(user, function (err, u) {
 		if (u) {
 			res.send(401, "User exists", user);
-			console.log("User exists", user);
+			// console.log("User exists", user);
 			return;
 		}
 		User.create(user, password);
