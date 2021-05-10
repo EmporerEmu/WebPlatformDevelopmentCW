@@ -18,9 +18,6 @@
                             <th scope="col">Name</th>
                             <th scope="col">details</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Completion Status</th>
-                            <th scope="col">Edit</th>
-                            <th scope="col">Complete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,23 +26,6 @@
                             <td>{{ workouts.name }}</td>
                             <td>{{ workouts.details }}</td>
                             <td>{{ date }}</td>
-                            <td>
-                                {{^workouts.completed}}<input type="checkbox" id="completionCheckFalse"
-                                    value={{workouts.completed}} disabled>{{/workouts.completed}}
-                                {{#workouts.completed}}<input type="checkbox" id="completionCheckTrue"
-                                    value={{workouts.completed}} checked disabled>{{/workouts.completed}}
-                            </td>
-                            <td><a href="/activities/edit/{{ _id }}" class="btn btn-outline-warning">Edit</a></td>
-                            <td>
-                                {{^workouts.completed}}
-                                <form action="" method="POST">
-                                    <button type="submit" name="completeButton" value="{{ _id }}"
-                                        class="btn btn-outline-success">
-                                        Complete
-                                    </button>
-                                </form>
-                                {{/workouts.completed}}
-                            </td>
                         </tr>
                         {{/tasks}}
                     </tbody>

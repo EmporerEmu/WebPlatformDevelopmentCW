@@ -79,9 +79,17 @@ router.get(
 	tasksController.missedActivities
 );
 
-router.get("/activities/previous/:previous", tasksController.previousWeek);
+router.get(
+	"/activities/previous/:previous",
+	ensureLoggedIn("/account/login"),
+	tasksController.previousWeek
+);
 
-router.get("/activities/next/:next", tasksController.nextWeek);
+router.get(
+	"/activities/next/:next",
+	ensureLoggedIn("/account/login"),
+	tasksController.nextWeek
+);
 
 // Account
 router.get("/account/login", accountController.login);

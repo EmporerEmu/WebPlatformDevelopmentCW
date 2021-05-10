@@ -3,7 +3,9 @@ const { response } = require("express");
 const tasks = require("../models/tasksModels");
 
 const db = new tasks();
-db.init();
+db.thisWeek();
+db.lastWeek();
+db.nextWeek();
 
 const validations = require("../public/js/validations");
 const vali = new validations();
@@ -120,10 +122,12 @@ exports.completeTask = function (req, res) {
 
 exports.missedActivities = function (req, res) {
 	var username = req.user.user;
+
 	db.getAllUncompletedTasks(username)
 		.then((tasks) => {
 			res.render("activities/activities-missed", {
 				tasks: tasks,
+				user: req.user,
 			});
 		})
 		.catch((err) => {
@@ -136,8 +140,9 @@ exports.previousWeek = function (req, res) {
 	var date = req.params.previous;
 	db.getTaskByWeek(date, username).then((list) => {
 		res.render("activities/activities-previous", {
-            tasks: list
-        })
+			tasks: list,
+			user: req.user,
+		});
 	});
 };
 
@@ -146,7 +151,8 @@ exports.nextWeek = function (req, res) {
 	var date = req.params.next;
 	db.getTaskByWeek(date, username).then((list) => {
 		res.render("activities/activities-next", {
-            tasks: list
-        })
+			tasks: list,
+			user: req.user,
+		});
 	});
 };

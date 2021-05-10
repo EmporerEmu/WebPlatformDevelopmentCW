@@ -13,18 +13,13 @@ class Tasks {
 		}
 	}
 
-	// Seeding tasks into the database
-	init() {
+	// Seeds in task for the current week
+	thisWeek() {
+		var currentWeek = vali.getDays();
 		this.db.insert({
-			weekStart: new Date("3 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
-			weekEnd: new Date("9 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
-			date: new Date("7 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
+			weekStart: new Date(currentWeek[0]).toISOString().substring(0, 10),
+			weekEnd: new Date(currentWeek[6]).toISOString().substring(0, 10),
+			date: new Date(currentWeek[3]).toISOString().substring(0, 10),
 			username: "ann@gmail.com",
 			workouts: {
 				name: "Outside jog",
@@ -33,15 +28,9 @@ class Tasks {
 			},
 		});
 		this.db.insert({
-			weekStart: new Date("3 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
-			weekEnd: new Date("9 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
-			date: new Date("4 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
+			weekStart: new Date(currentWeek[0]).toISOString().substring(0, 10),
+			weekEnd: new Date(currentWeek[6]).toISOString().substring(0, 10),
+			date: new Date(currentWeek[4]).toISOString().substring(0, 10),
 			username: "ann@gmail.com",
 			workouts: {
 				name: "Morning swim",
@@ -50,15 +39,9 @@ class Tasks {
 			},
 		});
 		this.db.insert({
-			weekStart: new Date("3 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
-			weekEnd: new Date("9 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
-			date: new Date("6 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
+			weekStart: new Date(currentWeek[0]).toISOString().substring(0, 10),
+			weekEnd: new Date(currentWeek[6]).toISOString().substring(0, 10),
+			date: new Date(currentWeek[5]).toISOString().substring(0, 10),
 			username: "ann@gmail.com",
 			workouts: {
 				name: "Weight Session",
@@ -67,15 +50,25 @@ class Tasks {
 			},
 		});
 		this.db.insert({
-			weekStart: new Date("3 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
-			weekEnd: new Date("9 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
-			date: new Date("9 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
+			weekStart: new Date(currentWeek[0]).toISOString().substring(0, 10),
+			weekEnd: new Date(currentWeek[6]).toISOString().substring(0, 10),
+			date: new Date(currentWeek[6]).toISOString().substring(0, 10),
+			username: "ann@gmail.com",
+			workouts: {
+				name: "Sunday swim",
+				details: "30 mins",
+				completed: false,
+			},
+		});
+	}
+	// Seeds in tasks for the previous week
+	lastWeek() {
+		var date = vali.getPreviousWeekStart();
+		var previousWeek = vali.getStartAndEnd(date);
+		this.db.insert({
+			weekStart: new Date(previousWeek[0]).toISOString().substring(0, 10),
+			weekEnd: new Date(previousWeek[6]).toISOString().substring(0, 10),
+			date: new Date(previousWeek[6]).toISOString().substring(0, 10),
 			username: "ann@gmail.com",
 			workouts: {
 				name: "Sunday swim",
@@ -84,15 +77,9 @@ class Tasks {
 			},
 		});
 		this.db.insert({
-			weekStart: new Date("3 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
-			weekEnd: new Date("9 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
-			date: new Date("4 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
+			weekStart: new Date(previousWeek[0]).toISOString().substring(0, 10),
+			weekEnd: new Date(previousWeek[6]).toISOString().substring(0, 10),
+			date: new Date(previousWeek[2]).toISOString().substring(0, 10),
 			username: "ann@gmail.com",
 			workouts: {
 				name: "Afternoon Stroll",
@@ -100,16 +87,15 @@ class Tasks {
 				completed: false,
 			},
 		});
+	}
+	// Seeds in tasks for the next week
+	nextWeek() {
+		var date = vali.getNextWeekStart();
+		var nextWeek = vali.getStartAndEnd(date);
 		this.db.insert({
-			weekStart: new Date("10 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
-			weekEnd: new Date("16 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
-			date: new Date("13 May 2021 12:00 UTC")
-				.toISOString()
-				.substring(0, 10),
+			weekStart: new Date(nextWeek[0]).toISOString().substring(0, 10),
+			weekEnd: new Date(nextWeek[6]).toISOString().substring(0, 10),
+			date: new Date(nextWeek[2]).toISOString().substring(0, 10),
 			username: "ann@gmail.com",
 			workouts: {
 				name: "Morning swim",
@@ -166,10 +152,10 @@ class Tasks {
 			weekStart: new Date(week[0]).toISOString().substring(0, 10),
 			weekEnd: new Date(week[6]).toISOString().substring(0, 10),
 			username: username,
+			date: new Date(date).toISOString().substring(0, 10),
 			workouts: {
 				name: name,
 				details: details,
-				date: new Date(date).toISOString().substring(0, 10),
 				completed: false,
 			},
 		};
@@ -177,7 +163,7 @@ class Tasks {
 			if (err) {
 				// console.log("Error inserting document", task);
 			} else {
-				// console.log("Document inserted into DB", doc); 
+				// console.log("Document inserted into DB", doc);
 			}
 		});
 	}
@@ -270,21 +256,26 @@ class Tasks {
 	// Gets all records where completed = false.
 	getAllUncompletedTasks(usernameIn) {
 		return new Promise((resolve, reject) => {
-			this.db.find({ username: usernameIn, "workouts.completed": false }, {}, function (err, docs) {
-				if (err) {
-					reject(err);
-					// console.log("Cannot get all uncompleted tasks", err);
-				} else {
-					resolve(docs);
-					// console.log("All uncompleted tasks:", docs);
+			this.db.find(
+				{ username: usernameIn, "workouts.completed": false },
+				{},
+				function (err, docs) {
+					if (err) {
+						reject(err);
+						// console.log("Cannot get all uncompleted tasks", err);
+					} else {
+                        vali.sortByDateDesc(docs);
+						resolve(docs);
+						// console.log("All uncompleted tasks:", docs);
+					}
 				}
-			});
+			);
 		});
 	}
 
-    getTaskByWeek(date, usernameIn) {
-        var week = vali.getStartAndEnd(date);
-        return new Promise((resolve, reject) => {
+	getTaskByWeek(date, usernameIn) {
+		var week = vali.getStartAndEnd(date);
+		return new Promise((resolve, reject) => {
 			this.db.find(
 				{
 					username: usernameIn,
@@ -311,12 +302,12 @@ class Tasks {
 					} else {
 						vali.sortByDateDesc(tasks);
 						resolve(tasks);
-						console.log("currentWeekTasks returns: ", tasks);
+						// console.log("currentWeekTasks returns: ", tasks);
 					}
 				}
 			);
 		});
-    }
+	}
 	// getTaskByUsername(usernameIn) {
 	// 	return new Promise((resolve, reject) => {
 	// 		this.db.find({ username: usernameIn }, {}, function (err, doc) {

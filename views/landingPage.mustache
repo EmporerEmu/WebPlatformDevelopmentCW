@@ -15,7 +15,9 @@
                 <p class="lead mb-4">Manage your workouts and reach new heights. The way you work is unique, accomplish
                     it with Fitness TODOS.</p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                    {{^user}}
                     <a href="/account/signup" class="btn btn-outline-secondary btn-lg px-4 me-sm-3">Get started!</a>
+                    {{/user}}
                 </div>
             </div>
             <div class="overflow-hidden" style="max-height: 30vh;">
